@@ -1,0 +1,17 @@
+<div id="front-page-temp">
+    <div id="movies-temp">
+        <ul>
+            <li *ngFor="let movie of movies">
+                <div class="movie-temp">
+                    <p class="id">{{movie.Id}}</p>
+                    <h3>{{movie.Title}}</h3>
+                    <p class="movie-info">Rating: {{movie.Rating}}</p>
+                    <p class="movie-info">Age Rating: {{movie.AgeRating}}</p>
+                    <p class="movie-info">Runtiem: {{movie.Runtime}}</p>
+                    <p class="movie-info">Release date: {{movie.ReleaseDate}}</p>
+                    <p class="movie-info">Img: {{movie.ImgUrl}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

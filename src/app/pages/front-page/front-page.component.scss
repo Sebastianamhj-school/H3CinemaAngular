@@ -1,0 +1,43 @@
+@import "./../../../colors.scss";
+
+#front-page-temp {
+  height: calc(100vh - 6rem);
+  width: 100%;
+  background-color: $background-color;
+  margin-top: 6rem;
+
+  #movies-temp {
+    height: 100%;
+    width: 100%;
+
+    ul {
+      list-style: none;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        background-color: $navigation-background;
+        padding: 1rem;
+        width: 15rem;
+        height: 15rem;
+        margin: 2.5rem auto;
+        text-align: center;
+        color: $white;
+        flex-direction: column;
+        border-radius: 2.5rem;
+        transition: 0.3s;
+
+        p.movie-info {
+          margin-bottom: 0.5rem;
+        }
+
+        .id {
+          text-align: left;
+          margin-left: 1rem;
+          color: $accent-color;
+        }
+      }
+    }
+  }
+}

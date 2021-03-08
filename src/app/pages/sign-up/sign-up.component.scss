@@ -1,0 +1,24 @@
+@import "./../../../colors.scss";
+
+#sign-up-temp {
+  height: calc(100vh - 6rem);
+  width: 100%;
+  background-color: $background-color;
+  margin-top: 6rem;
+
+  #header {
+    display: flex;
+    height: 30%;
+    min-height: 20rem;
+    width: 100%;
+    background-color: $background-color-dark;
+    overflow: hidden;
+
+    h1 {
+      margin: 9rem 0 0 0;
+      font-size: 12.5rem;
+      color: #333333;
+      bottom: 0;
+    }
+  }
+}

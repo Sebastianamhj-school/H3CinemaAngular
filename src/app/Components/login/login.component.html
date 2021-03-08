@@ -1,0 +1,15 @@
+<div id="login-shadow">
+    <div id="login-temp">
+        <button class="button-close" (click)="sendLoginClose()">Close</button>
+        <h1>Login</h1>
+        
+        <form [formGroup]="form" (submit)="alertOnSend()">
+            <label>Username</label>
+            <input class="input" type="text" placeholder="Username" autocomplete="username" formControlName="username" required>
+            <label>Password</label>
+            <input class="input" type="password" placeholder="Password" autocomplete="current-password" formControlName="password" required>
+            <input class="submit-input" type="submit" value="Login">
+        </form>
+        <input (click)="forgotPassword()" class="submit-input forgot-password" type="submit" value="Forgot Password">
+    </div>
+</div>
