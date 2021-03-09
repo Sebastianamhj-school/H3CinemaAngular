@@ -6,6 +6,7 @@ export class Movie {
         public Rating: number,
         public AgeRating: string,
         public ImgUrl: string,
-        public ReleaseDate: string
+        public ReleaseDate: string,
+        public Genre: string
     ) { }
 }
