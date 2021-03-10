@@ -2,4 +2,15 @@
     <div id="header">
         <h1>Sign up</h1>
     </div>
+    <div id="content">
+        <form [formGroup]="form" (submit)="alertOnSend()">
+            <label>Email</label>
+            <input class="input" type="email" placeholder="Email" autocomplete="email" formControlName="email" required>
+            <label>Password</label>
+            <input class="input" type="password" placeholder="Password" autocomplete="current-password" formControlName="password" required>
+            <label>Confirm password</label>
+            <input class="input" type="password" placeholder="Re-enter password" autocomplete="current-password" formControlName="confirmPassword" required>
+            <input class="submit-input" type="submit" value="Sign up">
+        </form>
+    </div>
 </div>

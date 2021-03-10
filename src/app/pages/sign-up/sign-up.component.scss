@@ -15,10 +15,52 @@
     overflow: hidden;
 
     h1 {
-      margin: 9rem 0 0 0;
-      font-size: 12.5rem;
-      color: #333333;
+      margin: 5rem 0 0 4rem;
+      font-size: 10em;
+      color: #2b2a2a;
       bottom: 0;
+    }
+  }
+
+  #content {
+    display: flex;
+    width: 100%;
+
+    form {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2.5rem;
+
+      label {
+        font-weight: 700;
+        margin: 1rem auto 0.5rem 7rem;
+        color: $grey;
+      }
+
+      .input {
+        width: 75%;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: none;
+        outline: none;
+        background-color: $background-color-dark;
+        color: $white;
+      }
+    }
+
+    .submit-input {
+      width: 50%;
+      padding: 0.8rem;
+      border-radius: 1rem;
+      border: none;
+      outline: none;
+      background-color: $accent-color;
+      color: $white;
+      margin-top: 2.5rem;
+      cursor: pointer;
+      transition: 0.2s;
     }
   }
 }

@@ -4,8 +4,8 @@
         <h1>Login</h1>
         
         <form [formGroup]="form" (submit)="alertOnSend()">
-            <label>Username</label>
-            <input class="input" type="text" placeholder="Username" autocomplete="username" formControlName="username" required>
+            <label>Email</label>
+            <input class="input" type="email" placeholder="Email" autocomplete="email" formControlName="email" required>
             <label>Password</label>
             <input class="input" type="password" placeholder="Password" autocomplete="current-password" formControlName="password" required>
             <input class="submit-input" type="submit" value="Login">

@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   @Output() loginClose = new EventEmitter<boolean>();
 
   form = new FormGroup({
-    username: new FormControl(),
+    email: new FormControl(),
     password: new FormControl()
   });
 
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   alertOnSend() {
-    alert(this.form.get("username").value + " " +
+    alert(this.form.get("email").value + " " +
           this.form.get("password").value + " ");
   }
 
