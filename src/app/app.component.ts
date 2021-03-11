@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (localStorage.getItem('themeState') === null) {
       localStorage.setItem('themeState', 'dark')
+      this.themeService.setThemeState(true);
     } else {
       if (localStorage.getItem('themeState') === 'dark') {
         this.isDarkMode = true;
