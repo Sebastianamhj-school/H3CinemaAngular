@@ -16,26 +16,25 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: $navigation-background;
     border-radius: 5rem;
     flex-direction: column;
     align-items: center;
 
     h1 {
-      color: $white;
+      color: inherit;
     }
 
     label {
-      color: $grey;
+      color: inherit;
     }
 
     .button-close {
       height: 4rem;
       width: 4rem;
       border-radius: 50%;
-      border: 1px solid $background-color;
-      background-color: $background-color;
-      color: $white;
+      border: 1px solid $dark_background-color;
+      background-color: $dark_background-color;
+      color: $dark_text;
       cursor: pointer;
       margin: 1.5rem 2rem 0 auto;
     }
@@ -59,8 +58,8 @@
         border-radius: 1rem;
         border: none;
         outline: none;
-        background-color: $background-color;
-        color: $white;
+        background-color: $dark_background-color;
+        color: $dark_text;
       }
     }
 
@@ -70,24 +69,34 @@
       border-radius: 1rem;
       border: none;
       outline: none;
-      background-color: $accent-color;
-      color: $white;
+      background-color: $dark_accent-color;
+      color: $dark_text;
       margin-top: 5rem;
       cursor: pointer;
       transition: 0.2s;
     }
 
     .submit-input:hover {
-      background-color: $accent-color-hover;
+      background-color: $dark_accent-color-hover;
     }
 
     .forgot-password {
       margin-top: 1rem;
-      background-color: $background-color;
+      background-color: $dark_background-color;
     }
 
     .forgot-password:hover {
-      background-color: $background-color;
+      background-color: $dark_background-color;
     }
   }
+}
+
+.is-light-mode {
+  background-color: $light_navigation-background;
+  color: $light_text;
+}
+
+.is-dark-mode {
+  background-color: $dark-navigation-background;
+  color: $dark_text;
 }

@@ -1,15 +1,14 @@
-<div id="front-page-temp">
+<div id="front-page-temp" [ngClass]="{'is-light-mode': !isDarkMode, 'is-dark-mode': isDarkMode}">
     <div id="movies-temp">
         <ul>
-            <li *ngFor="let movie of movies">
+            <li *ngFor="let movie of tempMovieData">
                 <div class="movie-temp">
-                    <p class="id">{{movie.Id}}</p>
-                    <h3>{{movie.Title}}</h3>
-                    <p class="movie-info">Rating: {{movie.Rating}}</p>
-                    <p class="movie-info">Age Rating: {{movie.AgeRating}}</p>
-                    <p class="movie-info">Runtiem: {{movie.Runtime}}</p>
-                    <p class="movie-info">Release date: {{movie.ReleaseDate}}</p>
-                    <p class="movie-info">Img: {{movie.ImgUrl}}</p>
+                    <p class="id">{{movie.id}}</p>
+                    <h3>{{movie.title}}</h3>
+                    <p class="movie-info">Rating: {{movie.rating}}</p>
+                    <p class="movie-info">Age Rating: {{movie.ageRating}}</p>
+                    <p class="movie-info">Runtiem: {{movie.runtime}}</p>
+                    <p class="movie-info">Release date: {{movie.releaseDate}}</p>
                 </div>
             </li>
         </ul>

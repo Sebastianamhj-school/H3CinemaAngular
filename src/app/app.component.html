@@ -1,4 +1,4 @@
-<nav>
+<nav [ngClass]="{'is-dark-mode': !isDarkMode}">
     <h2 routerLink="/front-page">H3 Cinema</h2>
     <ul>
         <li>
@@ -21,7 +21,7 @@
         </li>
         <li id="switch-li">
             <label class="switch">
-                <input (click)="toggleTheme()" type="checkbox">
+                <input (click)="toggleTheme()" type="checkbox" [checked]="isDarkMode">
                 <span class="slider round"></span>
             </label>
             <label class="darkmode-text">Darkmode</label>

@@ -1,5 +1,5 @@
-<div id="login-shadow">
-    <div id="login-temp">
+<div id="login-shadow" >
+    <div id="login-temp" [ngClass]="{'is-light-mode': !isDarkMode, 'is-dark-mode': isDarkMode}">
         <button class="button-close" (click)="sendLoginClose()">Close</button>
         <h1>Login</h1>
         

@@ -1,41 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Theme, light, dark } from '../../theme';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
-  private active: Theme = dark;
-  private availableThemes: Theme[] = [light, dark];
+  isDarkMode: boolean;
 
-  getAvailableThemes(): Theme[] {
-    return this.availableThemes;
+  themeStateChange: Subject<boolean> = new Subject<boolean>();
+
+  constructor() {
+    this.themeStateChange.subscribe((value) => {
+      this.isDarkMode = value
+    })
   }
 
-  getActiveTheme(): Theme {
-    return this.active;
+  toggleThemeState() {
+    this.themeStateChange.next(!this.isDarkMode);
   }
 
-  isDarkTheme(): boolean {
-    return this.active.name === dark.name;
-  }
-
-  setDarkTheme(): void {
-    this.setActiveTheme(dark);
-  }
-
-  setLightTheme(): void {
-    this.setActiveTheme(light);
-  }
-
-  setActiveTheme(theme: Theme): void {
-    this.active = theme;
-
-    Object.keys(this.active.properties).forEach(property => {
-      document.documentElement.style.setProperty(
-        property,
-        this.active.properties[property]
-      );
-    });
+  setThemeState(darkModeState: boolean) {
+    this.isDarkMode = darkModeState;
   }
 }

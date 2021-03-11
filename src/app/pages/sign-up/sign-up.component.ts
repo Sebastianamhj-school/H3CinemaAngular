@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,15 +9,21 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
+  isDarkMode: boolean;
+
   form = new FormGroup({
     email: new FormControl(),
     password: new FormControl(),
     confirmPassword: new FormControl()
   });
 
-  constructor() { }
+  constructor(private themeService: ThemeService) { }
 
   ngOnInit(): void {
+    this.isDarkMode = this.themeService.isDarkMode;
+    this.themeService.themeStateChange.subscribe(value => {
+      this.isDarkMode = value;
+    })
   }
 
   alertOnSend() {

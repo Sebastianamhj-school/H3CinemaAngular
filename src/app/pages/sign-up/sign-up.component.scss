@@ -3,7 +3,6 @@
 #sign-up-temp {
   height: calc(100vh - 6rem);
   width: 100%;
-  background-color: $background-color;
   margin-top: 6rem;
 
   #header {
@@ -11,7 +10,7 @@
     height: 30%;
     min-height: 20rem;
     width: 100%;
-    background-color: $background-color-dark;
+    background-color: $dark_background-color-dark;
     overflow: hidden;
 
     h1 {
@@ -36,7 +35,7 @@
       label {
         font-weight: 700;
         margin: 1rem auto 0.5rem 7rem;
-        color: $grey;
+        color: inherit;
       }
 
       .input {
@@ -45,8 +44,8 @@
         border-radius: 1rem;
         border: none;
         outline: none;
-        background-color: $background-color-dark;
-        color: $white;
+        background-color: $dark_background-color-dark;
+        color: $dark_text;
       }
     }
 
@@ -56,11 +55,21 @@
       border-radius: 1rem;
       border: none;
       outline: none;
-      background-color: $accent-color;
-      color: $white;
+      background-color: $dark_accent-color;
+      color: $dark_text;
       margin-top: 2.5rem;
       cursor: pointer;
       transition: 0.2s;
     }
   }
+}
+
+.is-light-mode {
+  background-color: $light_background-color;
+  color: $light_text;
+}
+
+.is-dark-mode {
+  background-color: $dark_background-color;
+  color: $dark_text;
 }

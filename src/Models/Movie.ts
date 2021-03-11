@@ -2,17 +2,17 @@ import { Crew } from './Crew';
 
 export class Movie {
     constructor(
-        public Id: number,
-        public Title: string,
-        public Runtime: number,
-        public Rating: number,
-        public AgeRating: string,
-        public ImgUrl: string,
-        public ReleaseDate: string,
-        public Genre: string[],
-        public Directors: Crew[],
-        public ScreenWriters: Crew[],
-        public ScriptWriters: Crew[],
-        public Actors: Crew[]
+        public id: number,
+        public title: string,
+        public runtime: number,
+        public rating: number,
+        public ageRating: string,
+        public imgUrl: string,
+        public releaseDate: string,
+        public genre: string[],
+        public directors: Crew[],
+        public screenWriters: Crew[],
+        public scriptWriters: Crew[],
+        public actors: Crew[]
     ) { }
 }

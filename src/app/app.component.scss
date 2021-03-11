@@ -7,14 +7,15 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: $navigation-background;
+  background-color: $dark_navigation-background;
   align-items: center;
   justify-content: space-between;
   -webkit-user-select: none;
+  color: $dark_text;
 
   h2 {
     cursor: pointer;
-    color: $accent-color;
+    color: $dark_accent-color;
     font-family: "Press Start 2P", sans-serif;
     margin-left: 5rem;
     outline: none;
@@ -35,7 +36,7 @@ nav {
 
   a.link {
     position: relative;
-    color: $white;
+    color: inherit;
     font-family: sans-serif;
     text-decoration: none;
     cursor: pointer;
@@ -51,7 +52,7 @@ nav {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: $accent-color;
+    background-color: $dark_accent-color;
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.3s ease-in-out 0s;
@@ -64,10 +65,10 @@ nav {
 
   a.link-button {
     position: relative;
-    color: $white;
+    color: $dark_text;
     padding: 0.5rem;
     text-decoration: none;
-    background-color: $accent-color;
+    background-color: $dark_accent-color;
     border-radius: 0.5rem;
     font-size: 1.2em;
     transition: border-radius 0.2s;
@@ -85,7 +86,7 @@ nav {
   }
 
   .darkmode-text {
-    color: $white;
+    color: inherit;
     font-size: 0.8em;
   }
 
@@ -109,7 +110,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: $grey;
+    background-color: $dark_grey;
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
@@ -121,17 +122,17 @@ nav {
     width: 18px;
     left: 3px;
     bottom: 3px;
-    background-color: $white;
+    background-color: $dark_text;
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
 
   input:checked + .slider {
-    background-color: $accent-color;
+    background-color: $dark_accent-color;
   }
 
   input:focus + .slider {
-    box-shadow: 0 0 1px $accent-color;
+    box-shadow: 0 0 1px $dark_accent-color;
   }
 
   input:checked + .slider:before {
@@ -147,4 +148,9 @@ nav {
   .slider.round:before {
     border-radius: 50%;
   }
+}
+
+.is-dark-mode {
+  background-color: $light_navigation-background;
+  color: $light_text;
 }
