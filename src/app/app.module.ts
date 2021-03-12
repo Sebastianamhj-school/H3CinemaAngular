@@ -9,13 +9,15 @@ import { FrontPageComponent } from './pages/front-page/front-page.component';
 import { LoginComponent } from './Components/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { from } from 'rxjs';
+import { MovieComponent } from './Components/movie/movie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FrontPageComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,
