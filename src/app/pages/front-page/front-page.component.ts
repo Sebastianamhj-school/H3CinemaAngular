@@ -27,7 +27,16 @@ export class FrontPageComponent implements OnInit {
     this.apiService.getMovies().subscribe(dataAPI => {
       this.tempMovieData = dataAPI;
     })
-
+    // this.http.get<any>("https://localhost:44339/api/Movies").subscribe({
+    //   next: data => {
+    //     this.tempMovieData = data;
+    //     console.log(this.tempMovieData);
+    //   },
+    //   error: error => {
+    //     this.errorMessage = error.message;
+    //     console.error('There was an error!', error);
+    //   }
+    // })
     console.log(this.isDarkMode);
   }
 
