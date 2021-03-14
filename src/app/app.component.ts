@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { from } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
 import { ThemeService } from './services/theme.service';
 

@@ -1,7 +1,7 @@
 <div id="front-page-temp" [ngClass]="{'is-light-mode': !isDarkMode, 'is-dark-mode': isDarkMode}">
   <div id="movies-temp">
 
-    <app-movie-poster *ngFor="let movie of tempMovieData" [movie]=movie></app-movie-poster>
+    <app-movie-poster *ngFor="let movie of movieData" [movie]=movie></app-movie-poster>
 
   </div>
 

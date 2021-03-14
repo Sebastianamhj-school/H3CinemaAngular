@@ -1,10 +1,8 @@
 export class Crew {
-    constructor(
-        public Id: number,
-        public FirstName: string,
-        public LastName: string,
-        public Birthday: string,
-        public ImgUrl: string,
-        public Description: string
-    ) {}
+    Id: number;
+    FirstName: string;
+    LastName: string;
+    Birthday: string;
+    ImgUrl: string;
+    Description: string;
 }

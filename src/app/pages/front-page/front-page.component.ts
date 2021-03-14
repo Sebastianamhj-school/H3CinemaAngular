@@ -1,9 +1,7 @@
-import { APIService } from './../../services/api.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/Models/Movie';
-
-import { ThemeService } from '../../services/theme.service';
+import { APIService } from 'src/app/services/api.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-front-page',
@@ -12,20 +10,20 @@ import { ThemeService } from '../../services/theme.service';
 })
 export class FrontPageComponent implements OnInit {
 
-  tempMovieData: Movie[];
-  errorMessage: any;
+  movieData: Movie[];
   isDarkMode: boolean;
 
   constructor(private themeService: ThemeService, private apiService:APIService) { }
 
   ngOnInit(): void {
     this.isDarkMode = this.themeService.isDarkMode;
+
     this.themeService.themeStateChange.subscribe(value => {
       this.isDarkMode = value;
     })
 
-    this.apiService.getMovies().subscribe(dataAPI => {
-      this.tempMovieData = dataAPI;
+    this.apiService.getMoviesRandom().subscribe(dataAPI => {
+      this.movieData = dataAPI;
     })
     // this.http.get<any>("https://localhost:44339/api/Movies").subscribe({
     //   next: data => {
@@ -37,7 +35,6 @@ export class FrontPageComponent implements OnInit {
     //     console.error('There was an error!', error);
     //   }
     // })
-    console.log(this.isDarkMode);
+    //console.log(this.isDarkMode);
   }
-
 }

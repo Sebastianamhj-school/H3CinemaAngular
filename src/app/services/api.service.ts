@@ -1,5 +1,5 @@
-import { Customer } from './../../Models/Customer';
-import { Movie } from './../../Models/Movie';
+import { Customer } from 'src/Models/Customer';
+import { Movie } from 'src/Models/Movie';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -15,10 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 
-
 export class APIService {
-
-
 
   baseUrl:string = "https://localhost:44339/api";
 
@@ -26,11 +23,11 @@ export class APIService {
   getcustomersUrl:string = this.baseUrl + "/Customers";
   getmoviesUrl:string = this.baseUrl + "/Movies";
   getmoviesRandomUrl:string = this.getmoviesUrl + "/Random";
-
   putmovieUrl:string = this.baseUrl + "/Movies/";
 
   constructor(private http:HttpClient) {}
 
+  // Get all movies
   getMovies():Observable<Movie[]>{
     return this.http.get<Movie[]>(this.getmoviesUrl)
     .pipe( //Catch error, if error retry 3 times before error
@@ -39,14 +36,16 @@ export class APIService {
       );
   }
 
-  getMovieSpecific(id:number):Observable<Movie[]>{
-    return this.http.get<Movie[]>(this.getmoviesUrl + "/" + id)
+  // Get a specific movie
+  getMovieSpecific(id:number):Observable<Movie>{
+    return this.http.get<Movie>(this.getmoviesUrl + "/" + id)
     .pipe( //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
       );
   }
 
+  // Get 20 random movies
   getMoviesRandom():Observable<Movie[]>{
     return this.http.get<Movie[]>(this.getmoviesRandomUrl)
     .pipe( //Catch error, if error retry 3 times before error
@@ -55,6 +54,7 @@ export class APIService {
       );
   }
 
+  // Get n amount of random movies
   getMoviesRandomAmount(amount:number):Observable<Movie[]>{
     return this.http.get<Movie[]>(this.getmoviesRandomUrl + "/" + amount)
     .pipe( //Catch error, if error retry 3 times before error
@@ -74,11 +74,7 @@ export class APIService {
     // .pipe( //Catch error, if error retry 3 times before error
     //   retry(3),
     //   catchError(this.handleError)
-
   }
-
-
-
 
   getCustomers():Observable<Customer[]>{
     return this.http.get<Customer[]>(this.getcustomersUrl)

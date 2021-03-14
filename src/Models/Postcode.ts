@@ -1,8 +1,5 @@
 export class Postcode {
-    constructor(
-        public Id: number,
-        public code: number,
-        public city: string
-
-    ) {}
+    id: number;
+    code: number;
+    city: string;
 }
