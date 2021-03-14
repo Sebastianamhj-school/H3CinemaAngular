@@ -1,4 +1,4 @@
-@import "./../../../colors.scss";
+@import "src/colors.scss";
 
 #front-page-temp {
   height: 100%;
@@ -8,6 +8,14 @@
 
 
 }
+
+#movies-temp{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+}
+
 .is-light-mode {
   background-color: $light_background-color;
   color: $light_text;
