@@ -22,7 +22,7 @@ export class FrontPageComponent implements OnInit {
       this.isDarkMode = value;
     })
 
-    this.apiService.getMoviesRandom().subscribe(dataAPI => {
+    this.apiService.getMovies().subscribe(dataAPI => {
       this.movieData = dataAPI;
     })
     // this.http.get<any>("https://localhost:44339/api/Movies").subscribe({
