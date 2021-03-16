@@ -1,27 +1,29 @@
-<p>movie-details works!</p>
-<!-- {{movie.id}} -->
-{{id}}
+<div id="movie-details-temp" [ngClass]="{'is-light-mode': !getTheme(), 'is-dark-mode': getTheme()}">
 
-asdasd
+  <div class="poster" *ngIf="movie">
+    <img [src]="movie.imgUrl || '/assets/images/noimage.png'" alt="no image found">
+    <h3>{{movie.title}}</h3>
+    <p>Rating: {{movie.rating}} </p>
+    <p>Runtime: {{movie.runtime}} </p>
+    <p>Agerating: {{movie.ageRating}}</p>
+    <p>Release date: {{movie.releaseDate}}</p>
+    <p>Genre: {{movie.genre}} </p>
+    <div *ngFor="let director of movie.directors">
+      <p>Director: {{director.firstName + " " + director.lastName}}</p>
+    </div>
+    <div *ngFor="let screenwriter of movie.screenWriters">
+      <p>Screenwriter: {{screenwriter.firstName + " " + screenwriter.lastName}}</p>
+    </div>
+    <div *ngFor="let scriptwriter of movie.scriptWriters">
+      <p>Scriptwriter: {{scriptwriter.firstName + " " + scriptwriter.lastName}}</p>
+    </div>
+    <div *ngFor="let actor of movie.actors">
+      <p>Actors: {{actor.firstName + " " + actor.lastName}}</p>
+    </div>
 
-<P></P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
-<P>{{id}}</P>
+  </div>
+
+
+</div>
+
+

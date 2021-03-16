@@ -72,13 +72,8 @@ export class APIService {
   }
 
   updateMovie(movie:Movie):Observable<Movie>{
-<<<<<<< HEAD
-    return this.http.put<Movie>(this.putmovieUrl, movie, httpOptions)
-    .pipe(
-=======
     return this.http.put<Movie>(this.baseUrl + `Movies`, movie)
     .pipe( //Catch error, if error retry 3 times before error
->>>>>>> master
       retry(3),
       catchError(this.handleError)
 

@@ -11,6 +11,5 @@ export class Movie {
     genre: string[];
     directors: Crew[];
     screenWriters: Crew[];
-    scriptWriters: Crew[];
     actors: Crew[];
 }

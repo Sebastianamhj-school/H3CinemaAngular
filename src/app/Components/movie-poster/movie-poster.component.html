@@ -1,9 +1,8 @@
 <div [ngClass]="{'is-light-mode': !getTheme(), 'is-dark-mode': getTheme()}">
-  <a [routerLink]="['/movie', movie.id]" >
-    <img [src]="movie.imgUrl || '/assets/images/noimage.png'" alt="no image found">
-  </a>
+
+  <img [src]="movie.imgUrl || '/assets/images/noimage.png'" alt="no image found">
     <h3>{{movie.title}}</h3>
     <p>A movie</p>
     <p class="movie-info">Release date: {{ movie.releaseDate | date:'mediumDate' }}</p>
-    <a routerLink="/">More</a>
+    <a [routerLink]="['/movie', movie.id]">More</a>
 </div>

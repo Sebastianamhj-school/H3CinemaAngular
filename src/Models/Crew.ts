@@ -1,8 +1,8 @@
 export class Crew {
-    Id: number;
-    FirstName: string;
-    LastName: string;
-    Birthday: string;
-    ImgUrl: string;
-    Description: string;
+    id: number;
+    firstName: string;
+    lastName: string;
+    birthday: string;
+    imgUrl: string;
+    description: string;
 }
