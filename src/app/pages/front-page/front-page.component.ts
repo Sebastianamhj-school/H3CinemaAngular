@@ -13,28 +13,17 @@ export class FrontPageComponent implements OnInit {
   movieData: Movie[];
   isDarkMode: boolean;
 
-  constructor(private themeService: ThemeService, private apiService:APIService) { }
+  constructor(private themeService: ThemeService, private apiService: APIService) { };
 
   ngOnInit(): void {
     this.isDarkMode = this.themeService.isDarkMode;
 
     this.themeService.themeStateChange.subscribe(value => {
       this.isDarkMode = value;
-    })
+    });
 
-    this.apiService.getMovies().subscribe(dataAPI => {
+    this.apiService.getMoviesRange(0, 32).subscribe(dataAPI => {
       this.movieData = dataAPI;
-    })
-    // this.http.get<any>("https://localhost:44339/api/Movies").subscribe({
-    //   next: data => {
-    //     this.tempMovieData = data;
-    //     console.log(this.tempMovieData);
-    //   },
-    //   error: error => {
-    //     this.errorMessage = error.message;
-    //     console.error('There was an error!', error);
-    //   }
-    // })
-    //console.log(this.isDarkMode);
+    });
   }
 }

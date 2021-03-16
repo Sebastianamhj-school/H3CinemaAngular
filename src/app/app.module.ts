@@ -11,6 +11,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { MovieComponent } from './Components/movie/movie.component';
 import { MoviePosterComponent } from './Components/movie-poster/movie-poster.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
+import { BookingSeatComponent } from './Components/booking-seat/booking-seat.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MovieDetailsComponent } from './pages/movie-details/movie-details.compo
     SignUpComponent,
     MovieComponent,
     MoviePosterComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    BookingSeatComponent
   ],
   imports: [
     BrowserModule,

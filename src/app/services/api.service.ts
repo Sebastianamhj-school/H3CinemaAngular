@@ -17,19 +17,27 @@ const httpOptions = {
 
 export class APIService {
 
-  baseUrl:string = "https://localhost:44339/api";
+  baseUrl:string = "https://localhost:44339/api/";
 
-  getbookingUrl:string = this.baseUrl + "/Bookings";
+  /* getbookingUrl:string = this.baseUrl + "/Bookings";
   getcustomersUrl:string = this.baseUrl + "/Customers";
   getmoviesUrl:string = this.baseUrl + "/Movies";
   getmoviesRandomUrl:string = this.getmoviesUrl + "/Random";
-  putmovieUrl:string = this.baseUrl + "/Movies/";
+  putmovieUrl:string = this.baseUrl + "/Movies/"; */
 
   constructor(private http:HttpClient) {}
 
   // Get all movies
   getMovies():Observable<Movie[]>{
-    return this.http.get<Movie[]>(this.getmoviesUrl)
+    return this.http.get<Movie[]>(this.baseUrl + `Movies`)
+    .pipe( //Catch error, if error retry 3 times before error
+      retry(3),
+      catchError(this.handleError)
+      );
+  }
+
+  getMoviesRange(start:number, end:number):Observable<Movie[]>{
+    return this.http.get<Movie[]>(this.baseUrl + `Movies/Range/${start}-${end}`)
     .pipe( //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -38,7 +46,7 @@ export class APIService {
 
   // Get a specific movie
   getMovieSpecific(id:number):Observable<Movie>{
-    return this.http.get<Movie>(this.getmoviesUrl + "/" + id)
+    return this.http.get<Movie>(this.baseUrl + `Movies/${id}`)
     .pipe( //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -47,7 +55,7 @@ export class APIService {
 
   // Get 20 random movies
   getMoviesRandom():Observable<Movie[]>{
-    return this.http.get<Movie[]>(this.getmoviesRandomUrl)
+    return this.http.get<Movie[]>(this.baseUrl + `Movies/Random`)
     .pipe( //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -56,7 +64,7 @@ export class APIService {
 
   // Get n amount of random movies
   getMoviesRandomAmount(amount:number):Observable<Movie[]>{
-    return this.http.get<Movie[]>(this.getmoviesRandomUrl + "/" + amount)
+    return this.http.get<Movie[]>(this.baseUrl + `Movies/Random/${amount}`)
     .pipe( //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -64,28 +72,26 @@ export class APIService {
   }
 
   updateMovie(movie:Movie):Observable<Movie>{
+<<<<<<< HEAD
     return this.http.put<Movie>(this.putmovieUrl, movie, httpOptions)
     .pipe(
+=======
+    return this.http.put<Movie>(this.baseUrl + `Movies`, movie)
+    .pipe( //Catch error, if error retry 3 times before error
+>>>>>>> master
       retry(3),
       catchError(this.handleError)
 
     );
-    // return this.http.get<Movie[]>(this.getmoviesRandomUrl + "/" + amount)
-    // .pipe( //Catch error, if error retry 3 times before error
-    //   retry(3),
-    //   catchError(this.handleError)
   }
 
   getCustomers():Observable<Customer[]>{
-    return this.http.get<Customer[]>(this.getcustomersUrl)
+    return this.http.get<Customer[]>(this.baseUrl + `Customers`)
     .pipe( //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
       );
   }
-
-
-
 
 
   private handleError(error: HttpErrorResponse) {
