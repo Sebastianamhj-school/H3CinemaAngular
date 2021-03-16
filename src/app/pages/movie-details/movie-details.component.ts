@@ -1,3 +1,4 @@
+import { APIService } from './../../services/api.service';
 import { Movie } from 'src/Models/Movie';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -9,21 +10,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  constructor(private _Activatedroute:ActivatedRoute) { }
+  constructor(private _Activatedroute:ActivatedRoute, private apiService:APIService) { }
 
   movie: Movie;
 
-  id: string;
+  id: number;
 
   ngOnInit(): void {
 
 
     this._Activatedroute.paramMap.subscribe(params => {
       console.log(params);
-      //movie = params.get(id);
-      //this.movie.id = Number(params.get('id'));
-      this.id = params.get('id');
+      this.id = Number(params.get('id'));
     })
+
+    //this.movie = this.apiService.getMovieSpecific(this.id)
   }
 
 }
