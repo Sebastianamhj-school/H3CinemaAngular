@@ -24,7 +24,10 @@ export class MovieDetailsComponent implements OnInit {
       this.id = Number(params.get('id'));
     })
 
-    //this.movie = this.apiService.getMovieSpecific(this.id)
+    this.apiService.getMovieSpecific(this.id).subscribe(
+      dataFromApi => this.movie = dataFromApi
+    );
+
   }
 
 }
