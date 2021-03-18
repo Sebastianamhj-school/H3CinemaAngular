@@ -1,8 +1,7 @@
 <div id="movie-details-temp" [ngClass]="{'is-light-mode': !getTheme(), 'is-dark-mode': getTheme()}">
 
+
   <div class="poster" *ngIf="movie">
-    
-    
     <div class="container">
       <img [src]="movie.imgUrl || '/assets/images/noimage.png'" alt="no image found">
     </div>
@@ -10,34 +9,74 @@
     <div class="container" style="margin: 0 0 0 2rem">
       <h1>{{movie.title}}</h1>
       <label>Pick time and date</label>
-      <select>
-        <option selected="true" value="test1" disabled="disabled">date</option>
+      <select (change)="onDateChange($event.target.value)">
+        <option selected="true" value="test1" disabled="disabled">Date</option>
         <option value="text2">test2</option>
         <option value="test3">test3</option>
         <option value="test4">test4</option>
       </select>
+      <div *ngIf="movieDate" id="screenings">
+        <app-movie-time></app-movie-time>
+        <app-movie-time></app-movie-time>
+      </div>
     </div>
-    
   </div>
+
   <div class="more-info">
-    <div *ngFor="let director of movie.directors">
-      <p>Director: {{director.firstName + " " + director.lastName}}</p>
+    <div class="col-1-2">
+      <div id="description">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim porro, natus eaque, eius consequuntur facilis nobis velit pariatur ad aperiam praesentium! Perferendis est recusandae, debitis distinctio iusto impedit laborum ea.</p>
+        <br>
+        <br>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio dolores sunt iusto. Reprehenderit vitae, ducimus aperiam iusto voluptas eaque sint tempora consectetur magnam corrupti consequuntur modi ipsam consequatur a eos!</p>
+        <br>
+        <br>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos facere magni minima voluptates tempora voluptas ratione accusamus quaerat culpa, libero, totam consequatur! Voluptatem, et illo. Qui, explicabo. Veritatis, nemo iusto!</p>
+      </div>
     </div>
-    <div *ngFor="let screenwriter of movie.screenWriters">
-      <p>Screenwriter: {{screenwriter.firstName + " " + screenwriter.lastName}}</p>
-    </div>
-    <div *ngFor="let scriptwriter of movie.screenWriters">
-      <p>Scriptwriter: {{scriptwriter.firstName + " " + scriptwriter.lastName}}</p>
-    </div>
-    <div *ngFor="let actor of movie.actors">
-      <p>Actors: {{actor.firstName + " " + actor.lastName}}</p>
+    <div class="col-1-2 card">
+      <div *ngIf="movie" id="more-info-card">
+        <div class="container">
+          <label>Title</label>
+          <p>{{movie.title}}</p>
+        </div>
+        <div class="container">
+          <label>Length</label>
+          <p>{{movie.runtime}} Minutes.</p>
+        </div>
+        <div class="container">
+          <label>Age rating</label>
+          <p>{{movie.ageRating || "--"}}</p>
+        </div>
+        <div class="container">
+          <label>Genres</label>
+          <p>{{movie.genre}}</p>
+        </div>
+        <div class="container">
+
+        </div>
+        
+      </div>
     </div>
   </div>
-  <p>Rating: {{movie.rating}} </p>
-      <p>Runtime: {{movie.runtime}} </p>
-      <p>Agerating: {{movie.ageRating}}</p>
-      <p>Release date: {{movie.releaseDate}}</p>
-      <p>Genre: {{movie.genre}} </p>
 </div>
+
+<!-- <p>Rating: {{movie.rating}} </p>
+<p>Runtime: {{movie.runtime}} </p>
+<p>Agerating: {{movie.ageRating}}</p>
+<p>Release date: {{movie.releaseDate}}</p>
+<p>Genre: {{movie.genre}} </p>
+<div *ngFor="let director of movie.directors">
+  <p>Director: {{director.firstName + " " + director.lastName}}</p>
+</div>
+<div *ngFor="let screenwriter of movie.screenWriters">
+  <p>Screenwriter: {{screenwriter.firstName + " " + screenwriter.lastName}}</p>
+</div>
+<div *ngFor="let scriptwriter of movie.screenWriters">
+  <p>Scriptwriter: {{scriptwriter.firstName + " " + scriptwriter.lastName}}</p>
+</div>
+<div *ngFor="let actor of movie.actors">
+  <p>Actors: {{actor.firstName + " " + actor.lastName}}</p>
+</div> -->
 
 

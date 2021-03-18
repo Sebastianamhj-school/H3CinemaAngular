@@ -1,6 +1,6 @@
 @import "src/colors.scss";
 
-:host{
+:host {
   display: grid;
   min-height: 100vh;
   grid-template-rows: auto 0 1fr;
@@ -20,12 +20,24 @@ nav {
   -webkit-user-select: none;
   color: $dark_text;
 
+  #logo {
+    margin-left: 5rem;
+    cursor: pointer;
+    outline: none;
+
+    label {
+      cursor: pointer;
+      opacity: 60%;
+      font-weight: bold;
+      font-size: 0.85em;
+    }
+  }
+
   h2 {
     cursor: pointer;
     color: $dark_accent-color;
     font-family: "Press Start 2P", sans-serif;
-    margin-left: 5rem;
-    outline: none;
+    margin: 0;
   }
 
   ul {
@@ -153,6 +165,73 @@ nav {
 
   .slider.round:before {
     border-radius: 50%;
+  }
+}
+
+footer {
+  width: 100%;
+  background-color: $dark_navigation-background;
+
+  .footer-temp {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 12.5%;
+  }
+
+  .wrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+    margin-bottom: 5rem;
+  }
+
+  .container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .divider {
+    width: 100%;
+    height: 3px;
+    background-color: $dark_background-color;
+    margin-bottom: 2.5rem;
+  }
+
+  .container:first-child {
+    align-items: Start;
+  }
+
+  h2 {
+    color: $dark_text;
+    font-family: "Press Start 2P", sans-serif;
+    margin: 0;
+  }
+
+  label {
+    opacity: 60%;
+    font-weight: bold;
+    font-size: 0.85em;
+    color: $dark_text;
+  }
+
+  p {
+    color: $dark_text;
+  }
+
+  svg {
+    height: 5rem;
+    width: 5rem;
+    cursor: pointer;
+    border: 0;
+    transition: 0.5s;
+  }
+
+  svg:hover {
+    fill: $dark_text;
   }
 }
 

@@ -1,8 +1,9 @@
-import { APIService } from './../../services/api.service';
-import { Movie } from 'src/Models/Movie';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ThemeService } from 'src/app/services/theme.service';
+
+import { APIService } from './../../services/api.service';
+import { Movie } from 'src/Models/Movie';
 
 @Component({
   selector: 'app-movie-details',
@@ -16,16 +17,12 @@ export class MovieDetailsComponent implements OnInit {
   movie: Movie;
 
   id: number;
+  movieDate: string;
 
   ngOnInit(): void {
-
-
     this._Activatedroute.paramMap.subscribe(params => {
       console.log(params);
       this.id = Number(params.get('id'));
-      console.log(this.id);
-
-
     })
 
     // this.apiService.getMovieSpecific(this.id).subscribe(
@@ -39,8 +36,6 @@ export class MovieDetailsComponent implements OnInit {
     //console.log(this.movie);
 
   }
-
-
   getTheme() {
     return this.themeService.isDarkMode;
   }
@@ -50,5 +45,8 @@ export class MovieDetailsComponent implements OnInit {
     console.log(this.movie);
   }
 
-
+  onDateChange(event) {
+    this.movieDate = event;
+    console.log(this.movieDate);
+  }
 }
