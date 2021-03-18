@@ -1,1 +1,18 @@
-<p>booking-seat works!</p>
+<div class="cinema" *ngIf="seats">
+
+    <div class="screen">Screen</div>
+
+    <div *ngFor="let row of rows" class="row">
+
+        <div *ngFor="let seat of row" class="seat"
+        [ngStyle]="{'background-color': getColor(seat) }"
+        (click)="setSelectSeat(seat)">
+
+            <!-- Shows the values for debug reasons, can be deleted when done -->
+            <p>{{getLocation(seat)}}</p>
+
+        </div>
+
+    </div>
+
+</div>
