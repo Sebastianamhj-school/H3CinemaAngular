@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { Screening } from 'src/Models/Screening';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -82,6 +83,22 @@ export class APIService {
 
   getCustomers():Observable<Customer[]>{
     return this.http.get<Customer[]>(this.baseUrl + `Customers`)
+    .pipe( //Catch error, if error retry 3 times before error
+      retry(3),
+      catchError(this.handleError)
+      );
+  }
+
+  getScreenings():Observable<Screening[]>{
+    return this.http.get<Screening[]>(this.baseUrl + `Screenings`)
+    .pipe( //Catch error, if error retry 3 times before error
+      retry(3),
+      catchError(this.handleError)
+      );
+  }
+
+  getScreeningsById(id: number):Observable<Screening>{
+    return this.http.get<Screening>(this.baseUrl + `Screenings/${id}`)
     .pipe( //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)

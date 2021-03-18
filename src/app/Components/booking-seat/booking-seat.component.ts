@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Seat } from 'src/Models/Seat';
 
 @Component({
@@ -11,24 +11,16 @@ export class BookingSeatComponent implements OnInit {
   @Input()
   seats: Seat[];
 
-  rows: Seat[][];
+  @Input()
+  bookingAmount: number;
+
+  @Output()
+  selectedSeatEvent = new EventEmitter<Seat>();
   selectedSeat: Seat;
 
-  ngOnInit(): void {
-    this.seats = new Array<Seat>();
-    this.seats.push({ id: 1, rowNumber: 1, seatNumber: 1, isBooked: true, customer: null });
-    this.seats.push({ id: 2, rowNumber: 1, seatNumber: 2, isBooked: true, customer: null });
-    this.seats.push({ id: 3, rowNumber: 1, seatNumber: 3, isBooked: false, customer: null });
-    this.seats.push({ id: 4, rowNumber: 1, seatNumber: 4, isBooked: false, customer: null });
-    this.seats.push({ id: 5, rowNumber: 2, seatNumber: 1, isBooked: false, customer: null });
-    this.seats.push({ id: 6, rowNumber: 2, seatNumber: 2, isBooked: false, customer: null });
-    this.seats.push({ id: 7, rowNumber: 2, seatNumber: 3, isBooked: false, customer: null });
-    this.seats.push({ id: 8, rowNumber: 2, seatNumber: 4, isBooked: false, customer: null });
-    this.seats.push({ id: 9, rowNumber: 3, seatNumber: 1, isBooked: false, customer: null });
-    this.seats.push({ id: 10, rowNumber: 3, seatNumber: 2, isBooked: false, customer: null });
-    this.seats.push({ id: 11, rowNumber: 3, seatNumber: 3, isBooked: false, customer: null });
-    this.seats.push({ id: 12, rowNumber: 3, seatNumber: 4, isBooked: false, customer: null });
+  rows: Seat[][];
 
+  ngOnInit(): void {
     // Get the highest row and seat number from the input.
     let rowAmount = Math.max.apply(Math, this.seats.map(function (o) { return o.rowNumber; }))
     let seatAmount = Math.max.apply(Math, this.seats.map(function (o) { return o.seatNumber; }))
@@ -43,24 +35,25 @@ export class BookingSeatComponent implements OnInit {
     });
   }
 
-  // get the appropiate color for a seat.
-  getColor(seat: Seat) : string {
-    let color: string = 'lightgray';
+  // get the appropiate class for a seat.
+  getClass(seat: Seat) : string {
+    let cls: string = 'free'; // Green
 
     if (seat.isBooked) {
-      color = 'red';
+      cls = 'occupied'; // Red
     }
     else if (seat === this.selectedSeat) {
-      color = 'limegreen';
+      cls = 'selected'; // Blue
     }
 
-    return color;
+    return cls;
   }
 
   // Sets the selected seat, callback from click event.
   setSelectSeat(seat: Seat) : void {
-    if (seat.isBooked != true) {
+    if (seat.isBooked != true && this.selectedSeat != seat) {
       this.selectedSeat = seat;
+      this.selectedSeatEvent.emit(seat);
     }
   }
 
