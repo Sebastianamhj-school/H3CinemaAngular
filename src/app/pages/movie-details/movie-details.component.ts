@@ -4,6 +4,8 @@ import { ThemeService } from 'src/app/services/theme.service';
 
 import { APIService } from './../../services/api.service';
 import { Movie } from 'src/Models/Movie';
+import { Screening } from 'src/Models/Screening';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
@@ -14,39 +16,40 @@ export class MovieDetailsComponent implements OnInit {
 
   constructor(private _Activatedroute:ActivatedRoute, private apiService:APIService, private themeService: ThemeService) { }
 
-  movie: Movie;
-
   id: number;
-  movieDate: string;
+  movie: Movie;
+  screenings: Screening[];
+  selectedDate: Date;
 
   ngOnInit(): void {
     this._Activatedroute.paramMap.subscribe(params => {
-      console.log(params);
       this.id = Number(params.get('id'));
     })
 
-    // this.apiService.getMovieSpecific(this.id).subscribe(
-    //   dataFromApi => {this.movie = dataFromApi}
-    // );
-
     this.apiService.getMovieSpecific(this.id).subscribe(dataAPI => {
       this.movie = dataAPI;
-      console.log(dataAPI);
     });
-    //console.log(this.movie);
 
+    this.apiService.getScreeningsByMovieId(this.id).subscribe(dataAPI => {
+      this.screenings = dataAPI;
+      console.log(this.screenings)
+    });
   }
+
+  getDistinctDates() {
+    return this.screenings.filter((scr, i, arr) => arr.findIndex(s => s.time.getDate == scr.time.getDate) === i);
+  }
+
+  getTimesFromDate() {
+    return this.screenings.filter(x => x.time.getDate == this.selectedDate.getDate);
+  }
+
   getTheme() {
     return this.themeService.isDarkMode;
   }
 
-  getObj()
-  {
-    console.log(this.movie);
-  }
-
-  onDateChange(event) {
-    this.movieDate = event;
-    console.log(this.movieDate);
+  onDateChange(event: Date) {
+    this.selectedDate = event;
+    console.log(this.selectedDate);
   }
 }

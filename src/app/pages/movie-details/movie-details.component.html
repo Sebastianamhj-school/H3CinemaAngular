@@ -7,18 +7,19 @@
     </div>
 
     <div class="container" style="margin: 0 0 0 2rem">
+
       <h1>{{movie.title}}</h1>
       <label>Pick time and date</label>
-      <select (change)="onDateChange($event.target.value)">
-        <option selected="true" value="test1" disabled="disabled">Date</option>
-        <option value="text2">test2</option>
-        <option value="test3">test3</option>
-        <option value="test4">test4</option>
+
+      <select *ngIf="screenings" (change)="onDateChange($event.target.value)">
+        <option selected="true" value="date" disabled="disabled">Date</option>
+        <option *ngFor="let screening of getDistinctDates()">{{screening.time | date:'mediumDate'}}</option>
       </select>
-      <div *ngIf="movieDate" id="screenings">
-        <app-movie-time></app-movie-time>
-        <app-movie-time></app-movie-time>
+
+      <div *ngIf="selectedDate" id="screenings">
+        <app-movie-time *ngFor="let screening of getTimesFromDate()"></app-movie-time>
       </div>
+
     </div>
   </div>
 

@@ -105,6 +105,13 @@ export class APIService {
       );
   }
 
+  getScreeningsByMovieId(id: number):Observable<Screening[]>{
+    return this.http.get<Screening[]>(this.baseUrl + `Screenings/Movie/${id}`)
+    .pipe( //Catch error, if error retry 3 times before error
+      retry(3),
+      catchError(this.handleError)
+      );
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
