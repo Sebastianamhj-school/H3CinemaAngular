@@ -19,9 +19,26 @@
             height: 3rem;
             width: 3rem;
             margin: 0.5rem;
+            border-radius: 5%;
+            color: rgb(73, 73, 73);
 
             align-items: center;
             justify-content: center;
+        }
+
+        .occupied{
+            background: #FF6961;
+            cursor: no-drop;
+        }
+
+        .free{
+            background: #C1E1C1;
+            cursor: pointer;
+        }
+
+        .selected{
+            background: #A7C7E7;
+            cursor: pointer;
         }
     }
 }
