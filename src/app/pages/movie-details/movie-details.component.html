@@ -1,29 +1,43 @@
 <div id="movie-details-temp" [ngClass]="{'is-light-mode': !getTheme(), 'is-dark-mode': getTheme()}">
 
   <div class="poster" *ngIf="movie">
-    <img [src]="movie.imgUrl || '/assets/images/noimage.png'" alt="no image found">
-    <h3>{{movie.title}}</h3>
-    <p>Rating: {{movie.rating}} </p>
-    <p>Runtime: {{movie.runtime}} </p>
-    <p>Agerating: {{movie.ageRating}}</p>
-    <p>Release date: {{movie.releaseDate}}</p>
-    <p>Genre: {{movie.genre}} </p>
+    
+    
+    <div class="container">
+      <img [src]="movie.imgUrl || '/assets/images/noimage.png'" alt="no image found">
+    </div>
+
+    <div class="container" style="margin: 0 0 0 2rem">
+      <h1>{{movie.title}}</h1>
+      <label>Pick time and date</label>
+      <select>
+        <option selected="true" value="test1" disabled="disabled">date</option>
+        <option value="text2">test2</option>
+        <option value="test3">test3</option>
+        <option value="test4">test4</option>
+      </select>
+    </div>
+    
+  </div>
+  <div class="more-info">
     <div *ngFor="let director of movie.directors">
       <p>Director: {{director.firstName + " " + director.lastName}}</p>
     </div>
     <div *ngFor="let screenwriter of movie.screenWriters">
       <p>Screenwriter: {{screenwriter.firstName + " " + screenwriter.lastName}}</p>
     </div>
-    <div *ngFor="let scriptwriter of movie.scriptWriters">
+    <div *ngFor="let scriptwriter of movie.screenWriters">
       <p>Scriptwriter: {{scriptwriter.firstName + " " + scriptwriter.lastName}}</p>
     </div>
     <div *ngFor="let actor of movie.actors">
       <p>Actors: {{actor.firstName + " " + actor.lastName}}</p>
     </div>
-
   </div>
-
-
+  <p>Rating: {{movie.rating}} </p>
+      <p>Runtime: {{movie.runtime}} </p>
+      <p>Agerating: {{movie.ageRating}}</p>
+      <p>Release date: {{movie.releaseDate}}</p>
+      <p>Genre: {{movie.genre}} </p>
 </div>
 
 
