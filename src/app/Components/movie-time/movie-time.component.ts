@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Screening } from 'src/Models/Screening';
 
 @Component({
   selector: 'app-movie-time',
@@ -7,8 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MovieTimeComponent implements OnInit {
   
-
-  constructor() { }
+  @Input()
+  screening: Screening;
 
   ngOnInit(): void {
   }

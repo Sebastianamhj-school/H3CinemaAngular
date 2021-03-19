@@ -32,7 +32,6 @@ export class MovieDetailsComponent implements OnInit {
 
     this.apiService.getScreeningsByMovieId(this.id).subscribe(dataAPI => {
       this.screenings = dataAPI;
-      console.log(this.screenings)
     });
   }
 
@@ -40,8 +39,16 @@ export class MovieDetailsComponent implements OnInit {
     return this.screenings.filter((scr, i, arr) => arr.findIndex(s => s.time.getDate == scr.time.getDate) === i);
   }
 
+  getDistinctCinema() {
+    return this.screenings.filter((scr, i, arr) => arr.findIndex(s => s.theater == scr.theater) === i);
+  }
+
   getTimesFromDate() {
     return this.screenings.filter(x => x.time.getDate == this.selectedDate.getDate);
+  }
+
+  getTimesFromDateAndCinema(theater: string) {
+    return this.screenings.filter(x => x.time.getDate == this.selectedDate.getDate && x.theater == theater);
   }
 
   getTheme() {
@@ -50,6 +57,5 @@ export class MovieDetailsComponent implements OnInit {
 
   onDateChange(event: Date) {
     this.selectedDate = event;
-    console.log(this.selectedDate);
   }
 }
