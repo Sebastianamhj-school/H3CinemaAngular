@@ -13,6 +13,7 @@ import { MoviePosterComponent } from './Components/movie-poster/movie-poster.com
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
 import { BookingSeatComponent } from './Components/booking-seat/booking-seat.component';
 import { MovieTimeComponent } from './Components/movie-time/movie-time.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MovieTimeComponent } from './Components/movie-time/movie-time.component
     FormsModule
   ],
   providers: [
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

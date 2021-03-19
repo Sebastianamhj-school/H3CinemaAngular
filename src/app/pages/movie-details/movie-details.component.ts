@@ -5,7 +5,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 import { APIService } from './../../services/api.service';
 import { Movie } from 'src/Models/Movie';
 import { Screening } from 'src/Models/Screening';
-import { formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
@@ -14,7 +14,11 @@ import { formatDate } from '@angular/common';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  constructor(private _Activatedroute:ActivatedRoute, private apiService:APIService, private themeService: ThemeService) { }
+  constructor(
+    private _Activatedroute: ActivatedRoute,
+    private apiService: APIService,
+    private themeService: ThemeService,
+    private datePipe: DatePipe) { }
 
   id: number;
   movie: Movie;
@@ -35,21 +39,26 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  getDistinctDates() {
-    return this.screenings.filter((scr, i, arr) => arr.findIndex(s => s.time.getDate == scr.time.getDate) === i);
+  getDistinctDates(): Screening[] {
+    return this.screenings.filter((scr, i, arr) => arr.findIndex(s => this.dateToString(s.time) === this.dateToString(scr.time)) === i);
   }
 
-  getDistinctCinema() {
-    return this.screenings.filter((scr, i, arr) => arr.findIndex(s => s.theater == scr.theater) === i);
+  dateToString(date: Date): string {
+    return this.datePipe.transform(date, 'mediumDate', 'en-US');
   }
 
-  getTimesFromDate() {
-    return this.screenings.filter(x => x.time.getDate == this.selectedDate.getDate);
+  getTimesFromDate(): Screening[] {
+    return this.screenings.filter(x => this.dateToString(x.time) == this.dateToString(this.selectedDate));
   }
 
-  getTimesFromDateAndCinema(theater: string) {
-    return this.screenings.filter(x => x.time.getDate == this.selectedDate.getDate && x.theater == theater);
+  getDistinctCinema(): Screening[] {
+    return this.getTimesFromDate().filter((scr, i, arr) => arr.findIndex(s => s.theater === scr.theater) === i);
   }
+
+  getTimesFromDateAndCinema(theater: string): Screening[] {
+    return this.screenings.filter(scr => this.dateToString(scr.time) === this.dateToString(this.selectedDate) && scr.theater === theater);
+  }
+
 
   getTheme() {
     return this.themeService.isDarkMode;
