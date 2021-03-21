@@ -40,23 +40,30 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   getDistinctDates(): Screening[] {
-    return this.screenings.filter((scr, i, arr) => arr.findIndex(s => this.dateToString(s.time) === this.dateToString(scr.time)) === i);
+    var tempScreenings = this.screenings.filter((scr, i, arr) =>
+      arr.findIndex(x => this.dateToString(x.time) === this.dateToString(scr.time)) === i)
+    
+    return tempScreenings.sort((a, b) => this.sortDate(a) - this.sortDate(b));
   }
 
-  dateToString(date: Date): string {
-    return this.datePipe.transform(date, 'mediumDate', 'en-US');
+  private dateToString(date: Date, format:string = 'mediumDate'): string {
+    return this.datePipe.transform(date, format, 'en-US');
   }
 
-  getTimesFromDate(): Screening[] {
-    return this.screenings.filter(x => this.dateToString(x.time) == this.dateToString(this.selectedDate));
+  private sortDate(screenings: Screening): number {
+    return Number(this.dateToString(screenings.time, 'yyyyMMddHHmmss'));
   }
 
   getDistinctCinema(): Screening[] {
-    return this.getTimesFromDate().filter((scr, i, arr) => arr.findIndex(s => s.theater === scr.theater) === i);
+    let dates = this.screenings.filter(x => this.dateToString(x.time) == this.dateToString(this.selectedDate));
+
+    return dates.filter((scr, i, arr) => arr.findIndex(s => s.theater === scr.theater) === i);
   }
 
-  getTimesFromDateAndCinema(theater: string): Screening[] {
-    return this.screenings.filter(scr => this.dateToString(scr.time) === this.dateToString(this.selectedDate) && scr.theater === theater);
+  getTimesFromCinema(theater: string): Screening[] {
+    return this.screenings.filter(scr =>
+      this.dateToString(scr.time) === this.dateToString(this.selectedDate) && scr.theater === theater)
+      .sort((a, b) => this.sortDate(a) - this.sortDate(b));
   }
 
 

@@ -12,16 +12,15 @@
       <label>Pick time and date</label>
 
       <select *ngIf="screenings" (change)="onDateChange($event.target.value)">
-        <option selected="true" value="date" disabled="disabled">Date</option>
+        <option value="" selected disabled hidden>Pick a date</option>
         <option *ngFor="let screening of getDistinctDates()">{{screening.time | date:'mediumDate'}}</option>
       </select>
 
       <div *ngIf="selectedDate" id="screenings">
         <div *ngFor="let theater of getDistinctCinema()">
           <p>Cinema: {{theater.theater}}</p>
-          <app-movie-time *ngFor="let screening of getTimesFromDateAndCinema(theater.theater)" [screening]="screening"></app-movie-time>
+          <app-movie-time *ngFor="let screening of getTimesFromCinema(theater.theater)" [screening]="screening"></app-movie-time>
         </div>
-        <!-- <app-movie-time *ngFor="let screening of getTimesFromDate()"></app-movie-time> -->
       </div>
 
     </div>
