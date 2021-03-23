@@ -18,7 +18,7 @@
 
       <div *ngIf="selectedDate" id="screenings">
         <div style="margin-top: 1rem" *ngFor="let theater of getDistinctCinema()">
-          <p style="margin-bottom: 1rem;">Cinema: {{theater.theater}}</p>
+          <p style="margin-bottom: 1rem;">Theater: {{theater.theater}}</p>
           <app-movie-time *ngFor="let screening of getTimesFromCinema(theater.theater)" [screening]="screening"></app-movie-time>
         </div>
       </div>

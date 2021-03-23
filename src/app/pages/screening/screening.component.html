@@ -1,5 +1,26 @@
 <div id="screening-temp" [ngClass]="{'is-light-mode': !getTheme(), 'is-dark-mode': getTheme()}">
     <div id="header">
-        
+        <div class="col-1-2">
+            <img src="/assets/images/noimage.png">
+        </div>
+        <div class="col-1-2">
+            <h1>{{screening.movie}}</h1>
+            <div class="container">
+                <label>Date:</label>
+                <p>{{screening.time}}</p>
+            </div>
+            <div class="container">
+                <label>Tickets:</label>
+                <p>{{tickets}}</p>
+            </div>
+            <div class="container">
+                <label>Theater:</label>
+                <p>{{screening.theater}}</p>
+            </div>
+            <div class="container">
+                <label>Age rating:</label>
+                <p>{{screening.ageRating}}</p>
+            </div>
+        </div>
     </div>
 </div>

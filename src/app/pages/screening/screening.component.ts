@@ -13,6 +13,7 @@ export class ScreeningComponent implements OnInit {
 
   id: number;
   screening: Screening;
+  tickets: number = 2;
 
   constructor(
     private _Activatedroute: ActivatedRoute,
