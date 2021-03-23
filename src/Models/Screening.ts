@@ -7,5 +7,5 @@ export class Screening {
     movie: string;
     ageRating: string;
     theater: string;
-    seats: Seat;
+    seats: Seat[];
 }

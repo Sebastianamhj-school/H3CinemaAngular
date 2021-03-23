@@ -60,7 +60,7 @@ export class BookingSeatComponent implements OnInit {
         tempSeats[i] = null;
       }
     }
-    if (!tempSeats.includes(null)) {
+    if (!tempSeats.includes(null) || tempSeats.length >= 1) {
       this.selectedSeats = tempSeats;
       this.statusMessage = ""
       this.selectedSeatsEvent.emit(this.selectedSeats);
