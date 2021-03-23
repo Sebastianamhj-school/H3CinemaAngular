@@ -1,26 +1,43 @@
 <div id="screening-temp" [ngClass]="{'is-light-mode': !getTheme(), 'is-dark-mode': getTheme()}">
     <div id="header">
-        <div class="col-1-2">
-            <img src="/assets/images/noimage.png">
+        <div class="col-1-2 center fill">
+            <img class="movie-image" src="/assets/images/noimage.png">
         </div>
-        <div class="col-1-2">
+        <div *ngIf="screening" class="col-1-2 fill">
             <h1>{{screening.movie}}</h1>
             <div class="container">
-                <label>Date:</label>
-                <p>{{screening.time}}</p>
-            </div>
-            <div class="container">
-                <label>Tickets:</label>
-                <p>{{tickets}}</p>
-            </div>
-            <div class="container">
-                <label>Theater:</label>
-                <p>{{screening.theater}}</p>
-            </div>
-            <div class="container">
-                <label>Age rating:</label>
-                <p>{{screening.ageRating}}</p>
+                <div class="col-1-2">
+                    <label>Date:</label>
+                    <label>Tickets:</label>
+                    <label>Theater:</label>
+                    <label>Age rating:</label>
+                </div>
+                <div style="margin-left: 2rem;" class="col-1-2">
+                    <p>{{screening.time | date:'mediumDate'}}</p>
+                    <p>{{tickets}}</p>
+                    <p>{{screening.theater}}</p>
+                    <p>{{screening.ageRating}}</p>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="wrapper">
+        <div id="tickets-temp">
+            <h1>Tickets</h1>
+            <label>Normal Ticket</label>
+            <label>$10</label>
+            <div class="container">
+                <div class="circle" (click)="minusTicket()">
+                    <p>-</p>
+                </div>
+                <p class="ticket-number">{{tickets}}</p>
+                <div class="circle" (click)="addTicket()">
+                    <p>+</p>
+                </div>
+            </div>
+            <p class="ticket-info">You have chosen <b>{{tickets}} ticket(s)</b> (max. <b>6 tickets</b>)</p>
+        </div>
+        <div class="divider"></div>
+        <div id="seats-temp"></div>
     </div>
 </div>

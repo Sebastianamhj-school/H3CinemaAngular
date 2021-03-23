@@ -9,8 +9,112 @@
   #header {
     display: flex;
     height: 30rem;
-    background-color: cornflowerblue;
+    background-color: $dark_background-color_dark;
+
+    .movie-image {
+      height: 75%;
+    }
+
+    h1 {
+      color: $dark_text;
+      font-size: 3em;
+      margin-bottom: 4rem;
+    }
+
+    label {
+      color: $dark_text;
+      opacity: 60%;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: $dark_text;
+      margin-bottom: 1rem;
+    }
   }
+
+  #tickets-temp {
+    display: flex;
+    margin: 2.5rem 0;
+    flex-direction: column;
+
+    h1 {
+      margin: 0 0 2rem 0;
+    }
+
+    label {
+      opacity: 60%;
+      margin-bottom: 1rem;
+    }
+
+    .ticket-info {
+      font-size: 1.1rem;
+    }
+
+    .circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 2rem;
+      width: 2rem;
+      border: 1px solid $dark_text;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.5s;
+      margin-bottom: 1.5rem;
+
+      &:hover {
+        background-color: $dark_text;
+        color: $light_text;
+      }
+
+      p {
+        font-weight: bold;
+      }
+    }
+
+    .ticket-number {
+      margin: 0 0.75rem;
+      line-height: 2rem;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  #seats-temp {
+    display: flex;
+    margin: 2.5rem 0;
+    flex-direction: column;
+  }
+}
+
+.col-1-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: $dark_button_hover;
+}
+
+.fill {
+  height: 100%;
+  width: 100%;
+}
+
+.center {
+  align-items: center;
+}
+
+.wrapper {
+  margin: 0 12.5%;
 }
 
 .is-light-mode {

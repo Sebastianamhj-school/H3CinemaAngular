@@ -36,4 +36,16 @@ export class ScreeningComponent implements OnInit {
     return this.themeService.isDarkMode;
   }
 
+  addTicket() {
+    this.tickets++;
+  }
+
+  minusTicket() {
+    if (this.tickets == 0) {
+      alert("Ticket can't be below 0");
+    } else {
+      this.tickets--;
+    }
+  }
+
 }
