@@ -24,7 +24,7 @@
   #screenings {
     display: flex;
     flex-direction: column;
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
 
   img {
@@ -109,7 +109,7 @@
 }
 
 .is-light-mode {
-  background-color: $light_navigation-background;
+  background-color: $light_background_color;
   color: $light_text;
 }
 
