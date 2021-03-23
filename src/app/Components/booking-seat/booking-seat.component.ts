@@ -15,9 +15,9 @@ export class BookingSeatComponent implements OnInit {
   bookingAmount: number;
 
   @Output()
-  selectedSeatEvent = new EventEmitter<Seat>();
-  selectedSeat: Seat;
-
+  selectedSeatsEvent = new EventEmitter<Seat[]>();
+  statusMessage: string = "";
+  selectedSeats: Seat[] = [];
   rows: Seat[][];
 
   ngOnInit(): void {
@@ -42,19 +42,38 @@ export class BookingSeatComponent implements OnInit {
     if (seat.isBooked) {
       cls = 'occupied'; // Red
     }
-    else if (seat === this.selectedSeat) {
+    else if (this.selectedSeats.includes(seat)) {
       cls = 'selected'; // Blue
     }
 
     return cls;
   }
 
-  // Sets the selected seat, callback from click event.
-  setSelectSeat(seat: Seat) : void {
-    if (seat.isBooked != true && this.selectedSeat != seat) {
-      this.selectedSeat = seat;
-      this.selectedSeatEvent.emit(seat);
+  setSelectSeat(seat: Seat, row: Seat[]): void {
+    let tempSeats = [];
+    let seatIndex = row.indexOf(seat);
+
+    for (let i = 0; i < this.bookingAmount; i++) {
+      if (row[seatIndex + i]) {
+        tempSeats[i] = this.getSeat(row[seatIndex + i]);
+      } else {
+        tempSeats[i] = null;
+      }
     }
+    if (!tempSeats.includes(null)) {
+      this.selectedSeats = tempSeats;
+      this.statusMessage = ""
+      this.selectedSeatsEvent.emit(this.selectedSeats);
+    } else {
+      this.statusMessage = "Can't select this seat."
+    }
+  }
+
+  private getSeat(seat: Seat): Seat{
+    if (seat.isBooked != true) {
+      return seat;
+    }
+    return null;
   }
 
   // Temp, can be deleted when done.

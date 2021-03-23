@@ -41,4 +41,10 @@
             cursor: pointer;
         }
     }
+
+    #statusMessage{
+        height: 1rem;
+        color: red;
+        text-align: center;
+    }
 }
