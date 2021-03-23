@@ -35,9 +35,19 @@
                     <p>+</p>
                 </div>
             </div>
-            <p class="ticket-info">You have chosen <b>{{tickets}} ticket(s)</b> (max. <b>6 tickets</b>)</p>
+            <p class="ticket-info">You have chosen <b>{{tickets}} ticket(s)</b> (max. <b>{{maxSeats}} tickets</b>)</p>
         </div>
         <div class="divider"></div>
-        <div id="seats-temp"></div>
+        <div id="seats-temp">
+            <app-booking-seat [seats]="screening.seats" [bookingAmount]="tickets" (selectedSeatsEvent)="getSeats($event)"></app-booking-seat>
+            <div *ngIf="selectedSeats" >
+                <p *ngFor="let seat of selectedSeats">{{seat.id}}</p>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div id="reserver-temp">
+            <h1>Reserve tickets</h1>
+            <button>Reserve Tickets</button>
+        </div>
     </div>
 </div>
