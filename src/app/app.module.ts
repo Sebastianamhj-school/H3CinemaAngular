@@ -14,6 +14,7 @@ import { MovieDetailsComponent } from './pages/movie-details/movie-details.compo
 import { BookingSeatComponent } from './Components/booking-seat/booking-seat.component';
 import { MovieTimeComponent } from './Components/movie-time/movie-time.component';
 import { DatePipe } from '@angular/common';
+import { ScreeningComponent } from './pages/screening/screening.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DatePipe } from '@angular/common';
     MoviePosterComponent,
     MovieDetailsComponent,
     BookingSeatComponent,
-    MovieTimeComponent
+    MovieTimeComponent,
+    ScreeningComponent
   ],
   imports: [
     BrowserModule,
