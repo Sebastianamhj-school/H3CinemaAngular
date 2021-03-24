@@ -54,13 +54,16 @@ export class BookingSeatComponent implements OnInit {
     let seatIndex = row.indexOf(seat);
 
     for (let i = 0; i < this.bookingAmount; i++) {
-      if (row[seatIndex + i]) {
+      if (i > row.length) {
+        tempSeats[i] = null
+      }
+      else if (row[seatIndex + i]) {
         tempSeats[i] = this.getSeat(row[seatIndex + i]);
       } else {
         tempSeats[i] = null;
       }
     }
-    if (!tempSeats.includes(null) || tempSeats.length >= 1) {
+    if (!tempSeats.includes(null)) {
       this.selectedSeats = tempSeats;
       this.statusMessage = ""
       this.selectedSeatsEvent.emit(this.selectedSeats);
