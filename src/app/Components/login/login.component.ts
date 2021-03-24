@@ -44,11 +44,20 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    /*
     var username = this.form.get('username').value;
     var password = this.form.get('password').value;
-    this.api.getToken(username, password).subscribe((dataAPI) => {
+     this.api.getToken(username, password).subscribe((dataAPI) => {
       this.token = dataAPI;
       this.tokenService.saveToken(this.token.token);
+    }); 
+    */
+
+    this.api.Login(this.form.value).subscribe((dataAPI) => {
+      this.token = dataAPI;
+      this.tokenService.saveToken(this.token.token);
+    }, () => {
+      console.log("TODO: Tell user the login wasn't successful.");
     });
   }
 
