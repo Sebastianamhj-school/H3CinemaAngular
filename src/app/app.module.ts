@@ -17,6 +17,9 @@ import { MovieTimeComponent } from './Components/movie-time/movie-time.component
 import { DatePipe } from '@angular/common';
 import { ScreeningComponent } from './pages/screening/screening.component';
 
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +41,9 @@ import { ScreeningComponent } from './pages/screening/screening.component';
     FormsModule,
   ],
   providers: [
+    [authInterceptorProviders],
     DatePipe
+
   ],
   bootstrap: [AppComponent]
 })

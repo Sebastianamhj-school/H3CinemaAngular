@@ -1,3 +1,4 @@
+import { Customer } from './../../../Models/Customer';
 import { TokenStorageService } from './../../services/token-storage.service';
 import { APIService } from 'src/app/services/api.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
@@ -16,6 +17,8 @@ export class LoginComponent implements OnInit {
 
   isDarkMode: boolean;
   token: User;
+
+  test: Customer;
 
   form = new FormGroup({
     username: new FormControl(),
@@ -50,7 +53,7 @@ export class LoginComponent implements OnInit {
      this.api.getToken(username, password).subscribe((dataAPI) => {
       this.token = dataAPI;
       this.tokenService.saveToken(this.token.token);
-    }); 
+    });
     */
 
     this.api.Login(this.form.value).subscribe((dataAPI) => {
@@ -58,6 +61,11 @@ export class LoginComponent implements OnInit {
       this.tokenService.saveToken(this.token.token);
     }, () => {
       console.log("TODO: Tell user the login wasn't successful.");
+    });
+    this.api.getCustomersSpecific(1).subscribe((dataAPI) => {
+
+      this.test = dataAPI;
+      console.log(dataAPI);
     });
   }
 
