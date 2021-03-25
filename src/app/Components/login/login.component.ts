@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   token: User;
 
   loginSuccessful: boolean;
+  loginErr: boolean;
 
   form = new FormGroup({
     username: new FormControl(),
@@ -64,7 +65,8 @@ export class LoginComponent implements OnInit {
       this.loginSuccessful = true;
     }, () => {
       console.log("TODO: Tell user the login wasn't successful.");
-      this.loginSuccessful = false;
+      this.loginErr = true;
+      this.form.get('password').reset();
     });
   }
 

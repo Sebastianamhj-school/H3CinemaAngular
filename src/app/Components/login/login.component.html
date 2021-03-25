@@ -33,6 +33,7 @@
       type="submit"
       value="Forgot Password"
     />
+    <p *ngIf="loginErr" style="color: rgb(216, 60, 60); margin-top: 1rem;">Username and password did not match.</p>
     </div>
     <div *ngIf="loginSuccessful" class="filler">
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
