@@ -18,6 +18,9 @@ import { DatePipe } from '@angular/common';
 import { ScreeningComponent } from './pages/screening/screening.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +43,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     FormsModule,
   ],
   providers: [
+    [authInterceptorProviders],
     DatePipe
+
   ],
   bootstrap: [AppComponent]
 })

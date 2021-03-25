@@ -11,6 +11,9 @@ import {
 } from '@angular/common/http';
 import { Screening } from 'src/Models/Screening';
 
+
+const baseUrl = 'https://localhost:44339/api/';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -21,30 +24,24 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class APIService {
-  baseUrl: string = 'https://localhost:44339/api/';
 
-  /* getbookingUrl:string = this.baseUrl + "/Bookings";
-  getcustomersUrl:string = this.baseUrl + "/Customers";
-  getmoviesUrl:string = this.baseUrl + "/Movies";
-  getmoviesRandomUrl:string = this.getmoviesUrl + "/Random";
-  putmovieUrl:string = this.baseUrl + "/Movies/"; */
 
   constructor(private http: HttpClient) {}
 
   getToken(username: string, password: string): Observable<User> {
     return this.http
-      .get<User>(this.baseUrl + `Users/login?username=${username}&password=${password}`)
+      .get<User>(baseUrl + `Users/login?username=${username}&password=${password}`)
       .pipe(retry(3), catchError(this.handleError));
   }
 
   Login(body: User): Observable<User> {
     return this.http
-      .post<User>(this.baseUrl + `Users/login`, body, httpOptions);
+      .post<User>(baseUrl + `Users/login`, body, httpOptions);
   }
 
   // Get all movies
   getMovies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.baseUrl + `Movies`).pipe(
+    return this.http.get<Movie[]>(baseUrl + `Movies`).pipe(
       //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -53,7 +50,7 @@ export class APIService {
 
   getMoviesRange(start: number, end: number): Observable<Movie[]> {
     return this.http
-      .get<Movie[]>(this.baseUrl + `Movies/Range/${start}-${end}`)
+      .get<Movie[]>(baseUrl + `Movies/Range/${start}-${end}`)
       .pipe(
         //Catch error, if error retry 3 times before error
         retry(3),
@@ -63,7 +60,7 @@ export class APIService {
 
   // Get a specific movie
   getMovieSpecific(id: number): Observable<Movie> {
-    return this.http.get<Movie>(this.baseUrl + `Movies/${id}`).pipe(
+    return this.http.get<Movie>(baseUrl + `Movies/${id}`).pipe(
       //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -72,7 +69,7 @@ export class APIService {
 
   // Get 20 random movies
   getMoviesRandom(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.baseUrl + `Movies/Random`).pipe(
+    return this.http.get<Movie[]>(baseUrl + `Movies/Random`).pipe(
       //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -82,7 +79,7 @@ export class APIService {
   // Get n amount of random movies
   getMoviesRandomAmount(amount: number): Observable<Movie[]> {
     return this.http
-      .get<Movie[]>(this.baseUrl + `Movies/Random/${amount}`)
+      .get<Movie[]>(baseUrl + `Movies/Random/${amount}`)
       .pipe(
         //Catch error, if error retry 3 times before error
         retry(3),
@@ -91,7 +88,7 @@ export class APIService {
   }
 
   updateMovie(movie: Movie): Observable<Movie> {
-    return this.http.put<Movie>(this.baseUrl + `Movies`, movie).pipe(
+    return this.http.put<Movie>(baseUrl + `Movies`, movie).pipe(
       //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -99,7 +96,16 @@ export class APIService {
   }
 
   getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseUrl + `Customers`).pipe(
+    return this.http.get<Customer[]>(baseUrl + `Customers`).pipe(
+      //Catch error, if error retry 3 times before error
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
+  // Get a specific movie
+  getCustomersSpecific(id: number): Observable<Customer> {
+    return this.http.get<Customer>(baseUrl + `Customers/${id}`).pipe(
       //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -114,7 +120,7 @@ export class APIService {
   }
 
   getScreenings(): Observable<Screening[]> {
-    return this.http.get<Screening[]>(this.baseUrl + `Screenings`).pipe(
+    return this.http.get<Screening[]>(baseUrl + `Screenings`).pipe(
       //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -122,7 +128,7 @@ export class APIService {
   }
 
   getScreeningsById(id: number): Observable<Screening> {
-    return this.http.get<Screening>(this.baseUrl + `Screenings/${id}`).pipe(
+    return this.http.get<Screening>(baseUrl + `Screenings/${id}`).pipe(
       //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
@@ -131,7 +137,7 @@ export class APIService {
 
   getScreeningsByMovieId(id: number): Observable<Screening[]> {
     return this.http
-      .get<Screening[]>(this.baseUrl + `Screenings/Movie/${id}`)
+      .get<Screening[]>(baseUrl + `Screenings/Movie/${id}`)
       .pipe(
         //Catch error, if error retry 3 times before error
         retry(3),
