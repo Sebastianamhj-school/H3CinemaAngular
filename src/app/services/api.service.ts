@@ -106,6 +106,13 @@ export class APIService {
     );
   }
 
+  getCustomerById(id: number): Observable<Customer> {
+    return this.http.get<Customer>(this.baseUrl + `Customers/${id}`).pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
   getScreenings(): Observable<Screening[]> {
     return this.http.get<Screening[]>(this.baseUrl + `Screenings`).pipe(
       //Catch error, if error retry 3 times before error
