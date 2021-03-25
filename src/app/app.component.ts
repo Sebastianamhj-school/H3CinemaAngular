@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ThemeService } from './services/theme.service';
+import { TokenStorageService } from './services/token-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,9 @@ export class AppComponent implements OnInit {
 
   loginState = false;
   isDarkMode = true;
+  isLoggedIn: boolean;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(private themeService: ThemeService, private tokenService: TokenStorageService) {}
 
   ngOnInit() {
     if (localStorage.getItem('themeState') === null) {
@@ -29,6 +31,8 @@ export class AppComponent implements OnInit {
         this.themeService.setThemeState(false);
       }
     }
+
+    this.isLoggedIn = this.tokenService.isTokenValid();
   }
 
   toggleTheme() {
@@ -43,6 +47,10 @@ export class AppComponent implements OnInit {
 
   receiveLoginState($event) {
     this.loginState = $event;
+  }
+
+  receiveUserState($event) {
+    this.isLoggedIn = $event;
   }
 
   showLogin() {

@@ -4,13 +4,16 @@
         <label>A FLS Production</label>
     </div>
     <ul>
-        <li>
+        <li style="margin-right: 2.5rem;">
             <a routerLink="" class="link">Movies</a>
         </li>
-        <li>
-            <a class="link" style="margin-left: 2.5rem;" (click)="showLogin()">Login</a>
+        <li *ngIf="isLoggedIn">
+            <a routerLink="/profile" class="link">Profile</a>
         </li>
-        <li>
+        <li *ngIf="!isLoggedIn">
+            <a class="link" (click)="showLogin()">Login</a>
+        </li>
+        <li *ngIf="!isLoggedIn">
             <a routerLink="/sign-up" class="link-button">Sign up</a>
         </li>
         <li id="switch-li">
@@ -23,7 +26,7 @@
     </ul>
 </nav>
 <router-outlet></router-outlet>
-<app-login *ngIf="loginState" (loginClose)="receiveLoginState($event)"></app-login>
+<app-login *ngIf="loginState" (loginClose)="receiveLoginState($event)" (userLoggedIn)="receiveUserState($event)"></app-login>
 <footer [ngClass]="{'is-dark-mode': !isDarkMode}">
     <div class="footer-temp">
         <div class="wrapper">

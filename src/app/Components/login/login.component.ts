@@ -13,6 +13,7 @@ import { User } from 'src/Models/User';
 })
 export class LoginComponent implements OnInit {
   @Output() loginClose = new EventEmitter<boolean>();
+  @Output() userLoggedIn = new EventEmitter<boolean>();
 
   isDarkMode: boolean;
   token: User;
@@ -56,6 +57,7 @@ export class LoginComponent implements OnInit {
     this.api.Login(this.form.value).subscribe((dataAPI) => {
       this.token = dataAPI;
       this.tokenService.saveToken(this.token.token);
+      this.userLoggedIn.emit(true);
     }, () => {
       console.log("TODO: Tell user the login wasn't successful.");
     });
