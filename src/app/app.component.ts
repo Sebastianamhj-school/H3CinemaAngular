@@ -51,6 +51,11 @@ export class AppComponent implements OnInit {
 
   receiveUserState($event) {
     this.isLoggedIn = $event;
+    if (this.isLoggedIn) {
+      setTimeout(() => {
+        this.loginState = false;
+      }, 2000);
+    }
   }
 
   showLogin() {
