@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 import { AppRoutingModule } from './app-routing.module';
