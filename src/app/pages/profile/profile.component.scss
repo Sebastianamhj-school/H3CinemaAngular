@@ -1,0 +1,18 @@
+@import "src/colors.scss";
+
+#profile-temp {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.is-light-mode {
+  background-color: $light_background_color_dark;
+  color: $light_text;
+}
+
+.is-dark-mode {
+  background-color: $dark_background-color_dark;
+  color: $dark_text;
+}
