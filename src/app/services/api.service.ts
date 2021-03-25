@@ -113,7 +113,7 @@ export class APIService {
   }
 
   getCustomerById(id: number): Observable<Customer> {
-    return this.http.get<Customer>(this.baseUrl + `Customers/${id}`).pipe(
+    return this.http.get<Customer>(baseUrl + `Customers/${id}`).pipe(
       retry(3),
       catchError(this.handleError)
     );
