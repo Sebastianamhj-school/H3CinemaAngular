@@ -19,8 +19,6 @@ export class LoginComponent implements OnInit {
   isDarkMode: boolean;
   token: User;
 
-  test: Customer;
-
   form = new FormGroup({
     username: new FormControl(),
     password: new FormControl(),
@@ -63,11 +61,6 @@ export class LoginComponent implements OnInit {
       this.userLoggedIn.emit(true);
     }, () => {
       console.log("TODO: Tell user the login wasn't successful.");
-    });
-    this.api.getCustomersSpecific(1).subscribe((dataAPI) => {
-
-      this.test = dataAPI;
-      console.log(dataAPI);
     });
   }
 
