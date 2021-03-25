@@ -37,6 +37,11 @@ export class APIService {
       .pipe(retry(3), catchError(this.handleError));
   }
 
+  Login(body: User): Observable<User> {
+    return this.http
+      .post<User>(this.baseUrl + `Users/login`, body, httpOptions);
+  }
+
   // Get all movies
   getMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.baseUrl + `Movies`).pipe(
