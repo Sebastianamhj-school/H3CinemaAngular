@@ -20,6 +20,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { DialogComponent } from './Components/dialog/dialog.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { DialogComponent } from './Components/dialog/dialog.component';
     MovieTimeComponent,
     ScreeningComponent,
     ProfileComponent,
-    DialogComponent
+    DialogComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
