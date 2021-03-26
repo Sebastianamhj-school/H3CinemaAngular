@@ -7,9 +7,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class TokenStorageService {
 
-  TOKEN_KEY: string = '';
+  loggedIn: boolean;
 
-  tokenStateChange: Subject<boolean> = new Subject<boolean>();
+  logger: Subject<boolean> = new Subject<boolean>();
 
   constructor() { }
 
@@ -17,14 +17,22 @@ export class TokenStorageService {
   public saveToken(token: string): void {
     localStorage.removeItem('Bearer');
     localStorage.setItem('Bearer', token);
+    this.loggedIn = true;
+    this.logger.next(this.loggedIn);
   }
 
   public signOut(): void {
-    localStorage.clear();
+    localStorage.removeItem('Bearer');
+    this.loggedIn = false;
+    this.logger.next(this.loggedIn);
   }
 
   public getToken(): any {
     return localStorage.getItem('Bearer');
+  }
+
+  public isLoggedIn(): Observable<boolean> {
+    return this.logger.asObservable();
   }
 
   public decodeToken(): any {

@@ -33,6 +33,9 @@ export class AppComponent implements OnInit {
     }
 
     this.isLoggedIn = this.tokenService.isTokenValid();
+    this.tokenService.isLoggedIn().subscribe(dataAPI => {
+      this.isLoggedIn = dataAPI;
+    })
   }
 
   toggleTheme() {
@@ -54,7 +57,7 @@ export class AppComponent implements OnInit {
     if (this.isLoggedIn) {
       setTimeout(() => {
         this.loginState = false;
-      }, 2000);
+      }, 1500);
     }
   }
 
