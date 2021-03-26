@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   loginState = false;
   isDarkMode = true;
   isLoggedIn: boolean;
+  admin: boolean;
 
   constructor(private themeService: ThemeService, private tokenService: TokenStorageService) {}
 
@@ -32,9 +33,20 @@ export class AppComponent implements OnInit {
       }
     }
 
+    // get login state on initial open
     this.isLoggedIn = this.tokenService.isTokenValid();
+    if (this.isLoggedIn) {
+      this.admin = this.tokenService.isAdmin();
+    }
+
+    // get login state updates
     this.tokenService.isLoggedIn().subscribe(dataAPI => {
       this.isLoggedIn = dataAPI;
+      if (this.isLoggedIn) {
+        this.admin = this.tokenService.isAdmin();
+      } else {
+        this.admin = false;
+      }
     })
   }
 

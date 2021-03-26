@@ -40,6 +40,12 @@ export class TokenStorageService {
     return helper.decodeToken(localStorage.getItem('Bearer'));
   }
 
+  public isAdmin() {
+    var temp = this.decodeToken();
+    console.log(temp.role);
+    return temp.role === 'Admin';
+  }
+
   public isTokenValid(): any {
     console.log(this.isTokenExpired() + " " + this.getToken())
     if (this.isTokenExpired() && this.getToken() !=null) {
