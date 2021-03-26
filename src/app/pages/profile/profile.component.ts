@@ -3,6 +3,7 @@ import { TokenStorageService } from '../../services/token-storage.service';
 import { ThemeService } from '../../services/theme.service';
 import { APIService } from 'src/app/services/api.service';
 import { Customer } from 'src/Models/Customer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -15,10 +16,12 @@ export class ProfileComponent implements OnInit {
     (
       private tokenService: TokenStorageService,
       private themeService: ThemeService,
-      private api: APIService
+      private api: APIService,
+      private route: Router
     ) { }
 
   customerInformation: Customer;
+  tickets: boolean;
 
   ngOnInit(): void {
     
@@ -27,10 +30,16 @@ export class ProfileComponent implements OnInit {
     console.log(temp.CustomerId);
     this.api.getCustomerById(temp.CustomerId).subscribe(DataApi => {
       this.customerInformation = DataApi;
+      console.log(this.customerInformation);
     })
   }
 
   getTheme() {
     return this.themeService.isDarkMode;
+  }
+
+  signOut() {
+    this.tokenService.signOut();
+    this.route.navigate(['/front-page']);
   }
 }

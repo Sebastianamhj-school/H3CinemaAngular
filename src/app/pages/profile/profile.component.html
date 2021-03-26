@@ -1,5 +1,28 @@
 <div id="profile-temp" [ngClass]="{'is-light-mode': !getTheme(), 'is-dark-mode': getTheme()}">
-    <div id="header">
-        <h1></h1>
+    <div class="wrapper">
+        <div *ngIf="customerInformation" class="card">
+            <div class="wrapper">
+                <div style="justify-content: space-between; align-items: center" class="container">
+                    <h1>{{customerInformation.firstName + " " + customerInformation.lastName}} </h1>
+                    <button (click)="signOut()">Sign out</button>
+                </div>
+                <label>{{customerInformation.email}}</label>
+            </div>
+        </div>
+        <div id="tickets-temp">
+            <div style="min-height: 20rem;" class="card">
+                <div class="wrapper">
+                    <div style="align-items: center" class="container column">
+                        <h2>Tickets</h2>
+                    </div>
+                    <div *ngIf="!tickets" style="align-items: center; justify-content: center;" class="container column fill">
+                        <h2>You have no Tickets reserved</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="align-items: center; margin-bottom: 5rem;" class="container column">
+            <button class="btn-red">Delete Account</button>
+        </div>
     </div>
 </div>

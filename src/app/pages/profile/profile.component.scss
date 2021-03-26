@@ -5,6 +5,75 @@
   width: 100%;
   height: 100%;
   flex-direction: column;
+  .card {
+    margin: 5rem 0;
+    padding: 2.5rem 0;
+    background-color: $dark_background-color;
+    border-radius: 2rem;
+    color: $dark_text;
+
+    h1 {
+      margin: 0;
+    }
+  }
+}
+
+button {
+  color: $dark_text;
+  padding: 0.5rem;
+  text-decoration: none;
+  background-color: $dark_accent-color;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1.2em;
+  transition: border-radius 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    border-radius: 0.2rem;
+  }
+}
+
+.btn-red {
+  background-color: rgb(221, 55, 55);
+}
+
+label {
+  color: darken($color: $dark_text, $amount: 30);
+  margin-bottom: 1rem;
+}
+
+.col-1-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.divider {
+  height: 2px;
+  width: 100%;
+  background-color: $dark_button_hover;
+}
+
+.fill {
+  height: 100%;
+  width: 100%;
+}
+
+.center {
+  align-items: center;
+}
+
+.wrapper {
+  margin: 0 12.5%;
 }
 
 .is-light-mode {
