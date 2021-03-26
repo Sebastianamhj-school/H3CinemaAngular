@@ -19,6 +19,7 @@ import { ScreeningComponent } from './pages/screening/screening.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { DialogComponent } from './Components/dialog/dialog.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     BookingSeatComponent,
     MovieTimeComponent,
     ScreeningComponent,
-    ProfileComponent
+    ProfileComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
