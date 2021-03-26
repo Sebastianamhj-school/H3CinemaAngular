@@ -47,7 +47,13 @@
         <div class="divider"></div>
         <div id="reserver-temp">
             <h1>Reserve tickets</h1>
-            <button>Reserve Tickets</button>
+            <div *ngIf="loggedIn" class="container">
+                <button>Reserve Tickets</button>
+            </div>
+            <div *ngIf="!loggedIn" class="container">
+                <button class="btn">Login</button>
+                <button>Sign up</button>
+            </div>
         </div>
     </div>
 </div>

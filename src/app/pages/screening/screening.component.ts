@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { APIService } from 'src/app/services/api.service';
 import { ThemeService } from 'src/app/services/theme.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { Screening } from 'src/Models/Screening';
 import { Seat } from 'src/Models/Seat';
 
@@ -17,11 +18,13 @@ export class ScreeningComponent implements OnInit {
   tickets: number = 2;
   selectedSeats: Seat[] = [];
   maxSeats: number;
+  loggedIn: boolean;
 
   constructor(
     private _Activatedroute: ActivatedRoute,
     private apiService: APIService,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private tokenService: TokenStorageService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +37,13 @@ export class ScreeningComponent implements OnInit {
       this.maxSeats = Math.max.apply(Math, this.screening.seats.map(function (o) { return o.seatNumber; }))
     });
 
+    if (this.tokenService.getToken() != null) {
+      this.loggedIn = true;
+    } else {
+      this.tokenService.isLoggedIn().subscribe(dataAPI => {
+        this.loggedIn = dataAPI;
+      })
+    }
   }
 
   getTheme() {
