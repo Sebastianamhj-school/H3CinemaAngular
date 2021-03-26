@@ -1,12 +1,11 @@
 @import "src/colors.scss";
 
 #front-page-temp {
-  //min-height: calc(100vh - 6rem);
   height: 100%;
   width: 100%;
 }
 
-#movies-temp{
+#movies-temp {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
