@@ -5,6 +5,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
 import { ScreeningComponent } from './pages/screening/screening.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/front-page', pathMatch: 'full' },
@@ -13,6 +15,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'movie/:id', component: MovieDetailsComponent },
   { path: 'screening/:id', component: ScreeningComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
   { path: "**", component: FrontPageComponent }
 ];
 
