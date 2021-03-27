@@ -12,7 +12,7 @@ import {
 import { Screening } from 'src/Models/Screening';
 
 
-const baseUrl = 'https://localhost:44339/api/';
+const baseUrl = 'http://localhost:5000/api/';
 
 const httpOptions = {
   headers: new HttpHeaders({
