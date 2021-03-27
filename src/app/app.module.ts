@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { FrontPageComponent } from './pages/front-page/front-page.component';
 import { LoginComponent } from './Components/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { MovieComponent } from './Components/movie/movie.component';
 import { MoviePosterComponent } from './Components/movie-poster/movie-poster.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
 import { BookingSeatComponent } from './Components/booking-seat/booking-seat.component';
@@ -28,7 +27,6 @@ import { DialogComponent } from './Components/dialog/dialog.component';
     FrontPageComponent,
     LoginComponent,
     SignUpComponent,
-    MovieComponent,
     MoviePosterComponent,
     MovieDetailsComponent,
     BookingSeatComponent,
