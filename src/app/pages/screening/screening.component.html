@@ -40,9 +40,6 @@
         <div class="divider"></div>
         <div id="seats-temp" *ngIf="screening">
             <app-booking-seat [seats]="screening.seats" [bookingAmount]="tickets" (selectedSeatsEvent)="getSeats($event)"></app-booking-seat>
-            <div *ngIf="selectedSeats" >
-                <p *ngFor="let seat of selectedSeats">{{seat.id}}</p>
-            </div>
         </div>
         <div class="divider"></div>
         <div id="reserver-temp">

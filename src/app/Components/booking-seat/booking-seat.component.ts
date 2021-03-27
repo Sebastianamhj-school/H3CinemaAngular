@@ -27,7 +27,7 @@ export class BookingSeatComponent implements OnInit {
 
     // Fills out an empty array as to not got null references when assigning to it.
     this.rows = new Array(rowAmount).fill(null)
-    .map(() => new Array<Seat>(seatAmount).fill(null));
+      .map(() => new Array<Seat>(seatAmount).fill(null));
 
     // Populates the 2dimentional array.
     this.seats.forEach(item => {
