@@ -9,6 +9,7 @@ export class Movie {
     imgUrl: string;
     releaseDate: Date;
     genre: string[];
+    description: string;
     directors: Crew[];
     screenWriters: Crew[];
     scripWriters: Crew[];
