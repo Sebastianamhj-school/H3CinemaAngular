@@ -10,6 +10,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Screening } from 'src/Models/Screening';
+import { Booking } from 'src/Models/Booking';
 
 
 const baseUrl = 'http://localhost:5000/api/';
@@ -136,8 +137,16 @@ export class APIService {
   }
 
   getScreeningsByMovieId(id: number): Observable<Screening[]> {
-    return this.http
-      .get<Screening[]>(baseUrl + `Screenings/Movie/${id}`)
+    return this.http.get<Screening[]>(baseUrl + `Screenings/Movie/${id}`)
+      .pipe(
+        //Catch error, if error retry 3 times before error
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
+  getBookingsByCustomerId(id: number): Observable<Booking[]> {
+    return this.http.get<Booking[]>(baseUrl + `bookings/Customer/${id}`)
       .pipe(
         //Catch error, if error retry 3 times before error
         retry(3),

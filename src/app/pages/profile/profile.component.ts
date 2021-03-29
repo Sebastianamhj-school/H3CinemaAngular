@@ -4,6 +4,7 @@ import { ThemeService } from '../../services/theme.service';
 import { APIService } from 'src/app/services/api.service';
 import { Customer } from 'src/Models/Customer';
 import { Router } from '@angular/router';
+import { Booking } from 'src/Models/Booking';
 
 @Component({
   selector: 'app-profile',
@@ -21,17 +22,24 @@ export class ProfileComponent implements OnInit {
     ) { }
 
   customerInformation: Customer;
+  bookings: Booking[];
   tickets: boolean;
 
   ngOnInit(): void {
     
-    console.log(this.tokenService.decodeToken());
     var temp = this.tokenService.decodeToken();
+    console.log(temp);
     console.log(temp.CustomerId);
+
     this.api.getCustomerById(temp.CustomerId).subscribe(DataApi => {
       this.customerInformation = DataApi;
       console.log(this.customerInformation);
-    })
+    });
+
+    this.api.getBookingsByCustomerId(temp.CustomerId).subscribe(DataApi => {
+      this.bookings = DataApi;
+      console.log(this.bookings);
+    });
   }
 
   getTheme() {

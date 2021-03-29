@@ -1,0 +1,15 @@
+div{
+    display: flex;
+    flex-direction: row;
+    
+    img{
+        height: 320px;
+        width: 230px;
+    }
+
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

@@ -15,8 +15,11 @@
                     <div style="align-items: center" class="container column">
                         <h2>Tickets</h2>
                     </div>
-                    <div *ngIf="!tickets" style="align-items: center; justify-content: center;" class="container column fill">
+                    <div *ngIf="!bookings" style="align-items: center; justify-content: center;" class="container column fill">
                         <h2>You have no Tickets reserved</h2>
+                    </div>
+                    <div *ngIf="bookings">
+                        <app-ticket *ngFor="let booking of bookings" [ticket]="booking"></app-ticket>
                     </div>
                 </div>
             </div>

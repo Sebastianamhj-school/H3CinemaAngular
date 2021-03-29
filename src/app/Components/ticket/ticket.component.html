@@ -1,0 +1,11 @@
+<div>
+    <img [src]="ticket.imgUrl" alt="">
+    <div>
+        <p>Movie: {{ticket.movieName}}</p>
+        <p>Theater: {{ticket.theaterName}}</p>
+        <p>Seat: {{ticket.rowNumber + "," + ticket.seatNumber}}</p>
+        <p>Date: {{ticket.screeningTime | date:'mediumDate'}}</p>
+        <p>Time: {{ticket.screeningTime | date:'HH:mm'}}</p>
+        <a [routerLink]="['/movie', ticket.movieId]">Movie Link</a>
+    </div>
+</div>

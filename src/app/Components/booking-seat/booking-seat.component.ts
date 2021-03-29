@@ -11,16 +11,24 @@ export class BookingSeatComponent implements OnInit {
   @Input()
   seats: Seat[];
 
-  @Input()
-  bookingAmount: number;
+  @Input("bookingAmount")
+  set amount(val: number) {
+    this.selectedSeats = [];
+    this.bookingAmount = val;
+  }
 
   @Output()
   selectedSeatsEvent = new EventEmitter<Seat[]>();
   statusMessage: string = "";
-  selectedSeats: Seat[] = [];
+  selectedSeats: Seat[];
   rows: Seat[][];
+  bookingAmount: number;
 
   ngOnInit(): void {
+    this.generateSeatArray();
+  }
+
+  generateSeatArray(): void {
     // Get the highest row and seat number from the input.
     let rowAmount = Math.max.apply(Math, this.seats.map(function (o) { return o.rowNumber; }))
     let seatAmount = Math.max.apply(Math, this.seats.map(function (o) { return o.seatNumber; }))

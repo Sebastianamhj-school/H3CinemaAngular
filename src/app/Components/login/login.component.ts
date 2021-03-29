@@ -64,7 +64,6 @@ export class LoginComponent implements OnInit {
       this.userLoggedIn.emit(true);
       this.loginSuccessful = true;
     }, () => {
-      console.log("TODO: Tell user the login wasn't successful.");
       this.loginErr = true;
       this.form.get('password').reset();
     });
