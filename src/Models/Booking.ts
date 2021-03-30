@@ -1,5 +1,5 @@
 export class Booking {
-    bookingId: number;
+    Id: number;
     customerId: number;
     movieId: number;
     seatId: number;

@@ -46,6 +46,11 @@ export class TokenStorageService {
     return temp.role === 'Admin';
   }
 
+  public getCustomerId() {
+    var temp = this.decodeToken();
+    return temp.CustomerId
+  }
+
   public isTokenValid(): any {
     console.log(this.isTokenExpired() + " " + this.getToken())
     if (this.isTokenExpired() && this.getToken() !=null) {

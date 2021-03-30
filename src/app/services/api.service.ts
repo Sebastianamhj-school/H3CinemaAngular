@@ -154,6 +154,11 @@ export class APIService {
       );
   }
 
+  postBooking(body: Booking): Observable<Booking> {
+    return this.http
+      .post<Booking>(baseUrl + `bookings`, body, httpOptions);
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

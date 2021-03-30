@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { APIService } from 'src/app/services/api.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { Booking } from 'src/Models/Booking';
 import { Screening } from 'src/Models/Screening';
 import { Seat } from 'src/Models/Seat';
 
@@ -64,6 +65,22 @@ export class ScreeningComponent implements OnInit {
 
   getSeats(event) {
     this.selectedSeats = event;
+  }
+
+  reserveTickets() {
+    this.selectedSeats.forEach(seat => {
+      let booking = {
+        seatId: seat.id,
+        customerId: this.tokenService.getCustomerId()
+      } as Booking;
+
+      this.apiService.postBooking(booking).subscribe((dataAPI) => {
+        console.log("Success")
+      }, () => {
+        // ERROR MESSAGE
+      });
+
+    });
   }
 
 }

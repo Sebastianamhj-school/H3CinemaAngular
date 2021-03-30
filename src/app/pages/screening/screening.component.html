@@ -45,7 +45,7 @@
         <div id="reserver-temp">
             <h1>Reserve tickets</h1>
             <div *ngIf="loggedIn" class="container">
-                <button>Reserve Tickets</button>
+                <button (click)="reserveTickets()">Reserve Tickets</button>
             </div>
             <div *ngIf="!loggedIn" class="container">
                 <button class="btn">Login</button>
