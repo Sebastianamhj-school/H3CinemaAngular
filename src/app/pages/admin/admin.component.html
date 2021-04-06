@@ -1,3 +1,14 @@
 <div id="admin-temp" [ngClass]="{'is-light-mode': !getTheme(), 'is-dark-mode': getTheme()}">
-
+    <div class="wrapper">
+        <div id="navigation-tab">
+            <ul>
+                <li 
+                    *ngFor="let item of navigationItems; let i = index" 
+                    (click)="onNavigationItemClick(i)">
+                        <p [ngClass]="{'active-navigation': item == activeNavigation}">{{item}}</p>
+                    </li>
+            </ul>
+            <div class="divider"></div>
+        </div>
+    </div>
 </div>
