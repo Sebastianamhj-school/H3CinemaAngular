@@ -22,7 +22,7 @@ export class FrontPageComponent implements OnInit {
       this.isDarkMode = value;
     });
 
-    this.apiService.getMoviesRange(1, 32).subscribe(dataAPI => {
+    this.apiService. getMoviesAiring().subscribe(dataAPI => {
       this.movieData = dataAPI;
     });
   }

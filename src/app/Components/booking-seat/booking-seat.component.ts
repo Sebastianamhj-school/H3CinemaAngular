@@ -12,9 +12,9 @@ export class BookingSeatComponent implements OnInit {
   seats: Seat[];
 
   @Input("bookingAmount")
-  set amount(val: number) {
+  set amount(value: number) {
     this.selectedSeats = [];
-    this.bookingAmount = val;
+    this.bookingAmount = value;
   }
 
   @Output()

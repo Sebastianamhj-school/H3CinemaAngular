@@ -88,6 +88,16 @@ export class APIService {
       );
   }
 
+  getMoviesAiring(): Observable<Movie[]> {
+    return this.http
+      .get<Movie[]>(baseUrl + `Movies/Airing`)
+      .pipe(
+        //Catch error, if error retry 3 times before error
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
   updateMovie(movie: Movie): Observable<Movie> {
     return this.http.put<Movie>(baseUrl + `Movies`, movie).pipe(
       //Catch error, if error retry 3 times before error
