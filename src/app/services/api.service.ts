@@ -27,6 +27,16 @@ export class APIService {
 
   constructor(private http:HttpClient) {}
 
+  postUser(body: User): Observable<User> {
+    return this.http
+      .post<User>(baseUrl + `Users/CreateUser`, body, httpOptions);
+  }
+
+  async postCustomerSync(body: Customer) //Sync call
+  {
+    return await this.http.post(baseUrl + `Customers`, body, httpOptions).toPromise;
+  }
+
   // Get all movies
   getMovies():Observable<Movie[]>{
     return this.http.get<Movie[]>(this.baseUrl + `Movies`)
@@ -77,6 +87,19 @@ export class APIService {
       retry(3),
       catchError(this.handleError)
 
+<<<<<<< Updated upstream
+=======
+  postCustomer(body: Customer): Observable<Customer> {
+    return this.http
+      .post<Customer>(baseUrl + `Customers`, body, httpOptions);
+  }
+
+  getScreenings(): Observable<Screening[]> {
+    return this.http.get<Screening[]>(baseUrl + `Screenings`).pipe(
+      //Catch error, if error retry 3 times before error
+      retry(3),
+      catchError(this.handleError)
+>>>>>>> Stashed changes
     );
   }
 
@@ -87,6 +110,8 @@ export class APIService {
       catchError(this.handleError)
       );
   }
+
+
 
 
   private handleError(error: HttpErrorResponse) {
