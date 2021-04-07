@@ -28,17 +28,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     
     var temp = this.tokenService.decodeToken();
-    console.log(temp);
-    console.log(temp.CustomerId);
 
     this.api.getCustomerById(temp.CustomerId).subscribe(DataApi => {
       this.customerInformation = DataApi;
-      console.log(this.customerInformation);
     });
 
     this.api.getBookingsByCustomerId(temp.CustomerId).subscribe(DataApi => {
       this.bookings = DataApi;
-      console.log(this.bookings);
     });
   }
 
