@@ -8,10 +8,10 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 })
 export class AdminGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
-        console.log("Guard reached");
+        //console.log("Guard reached");
         if (this.tokenService.isTokenValid()) {
             var admin = this.tokenService.isAdmin();
-            console.log("Token is valid");
+            //console.log("Token is valid");
             if (admin) {
                 return true;
             } else {
@@ -19,7 +19,7 @@ export class AdminGuard implements CanActivate {
                 return false;
             }
         } else {
-            console.log("Token is invalid");
+            //console.log("Token is invalid");
             this.router.navigate(['/front-page'], { queryParams: { returnUrl: state.url}});
             return false;
         }
