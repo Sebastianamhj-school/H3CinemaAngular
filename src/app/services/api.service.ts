@@ -27,14 +27,14 @@ export class APIService {
 
   constructor(private http:HttpClient) {}
 
-  postUser(body: User): Observable<User> {
-    return this.http
-      .post<User>(baseUrl + `Users/CreateUser`, body, httpOptions);
-  }
+  // postUser(body: User): Observable<User> {
+  //   return this.http
+  //     .post<User>(baseUrl + `Users/CreateUser`, body, httpOptions);
+  // }
 
   async postCustomerSync(body: Customer) //Sync call
   {
-    return await this.http.post(baseUrl + `Customers`, body, httpOptions).toPromise;
+    return await this.http.post(this.baseUrl + `Customers`, body, httpOptions).toPromise;
   }
 
   // Get all movies
@@ -86,22 +86,21 @@ export class APIService {
     .pipe( //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
-
-<<<<<<< Updated upstream
-=======
-  postCustomer(body: Customer): Observable<Customer> {
-    return this.http
-      .post<Customer>(baseUrl + `Customers`, body, httpOptions);
-  }
-
-  getScreenings(): Observable<Screening[]> {
-    return this.http.get<Screening[]>(baseUrl + `Screenings`).pipe(
-      //Catch error, if error retry 3 times before error
-      retry(3),
-      catchError(this.handleError)
->>>>>>> Stashed changes
     );
   }
+
+  postCustomer(body: Customer): Observable<Customer> {
+    return this.http
+      .post<Customer>(this.baseUrl + `Customers`, body, httpOptions);
+  }
+
+  // getScreenings(): Observable<Screening[]> {
+  //   return this.http.get<Screening[]>(this.baseUrl + `Screenings`).pipe(
+  //     //Catch error, if error retry 3 times before error
+  //     retry(3),
+  //     catchError(this.handleError)
+  //   );
+  // }
 
   getCustomers():Observable<Customer[]>{
     return this.http.get<Customer[]>(this.baseUrl + `Customers`)
