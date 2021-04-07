@@ -1,7 +1,23 @@
 @import "../../../colors.scss";
 
 #create-box-temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 20rem;
   width: 15rem;
+  cursor: pointer;
+  margin-top: 2.5rem;
+  border-radius: 10px;
   background-color: $dark_background_color_dark;
+
+  svg {
+    height: 5rem;
+    width: 5rem;
+    transition: 0.3s;
+  }
+
+  &:hover svg {
+    fill: $dark_accent_color;
+  }
 }

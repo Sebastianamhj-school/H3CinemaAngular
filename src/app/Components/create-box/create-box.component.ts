@@ -7,7 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CreateBoxComponent implements OnInit {
   @Input() box: string;
-  @Input() formType: null;
 
 
   constructor() { }
