@@ -1,0 +1,8 @@
+<input type="search" placeholder="Search..."
+    [value]="inputValue" [(ngModel)]="inputValue">
+
+<div class="dropdown">
+
+    <p *ngFor="let item of filterOptions(inputValue)" (click)="getValue(item)">{{item.value}}</p>
+
+</div>

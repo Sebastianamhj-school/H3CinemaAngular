@@ -21,6 +21,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { DialogComponent } from './Components/dialog/dialog.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { TicketComponent } from './Components/ticket/ticket.component';
+import { ComboBoxComponent } from './Components/combo-box/combo-box.component';
 import { CreateBoxComponent } from './Components/create-box/create-box.component';
 import { DynamicFormComponent } from './Components/dynamic-form/dynamic-form.component';
 
@@ -40,6 +41,7 @@ import { DynamicFormComponent } from './Components/dynamic-form/dynamic-form.com
     DialogComponent,
     AdminComponent,
     TicketComponent,
+    ComboBoxComponent,
     CreateBoxComponent,
     DynamicFormComponent
   ],

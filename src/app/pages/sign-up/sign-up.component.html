@@ -3,14 +3,32 @@
         <h1>Sign up</h1>
     </div>
     <div id="content">
-        <form [formGroup]="form" (submit)="alertOnSend()">
-            <label>Email</label>
-            <input class="input" type="email" placeholder="Email" autocomplete="email" formControlName="email" required>
+        <form [formGroup]="formUser" *ngIf="!formcheck" (submit)="submitForm()">
+            <label>Username</label>
+            <input class="input" type="text" (ngModelChange)="test1($event)" placeholder="Usename" autocomplete="username" formControlName="username" required >
+
             <label>Password</label>
             <input class="input" type="password" placeholder="Password" autocomplete="current-password" formControlName="password" required>
             <label>Confirm password</label>
             <input class="input" type="password" placeholder="Re-enter password" autocomplete="current-password" formControlName="confirmPassword" required>
-            <input class="submit-input" type="submit" value="Sign up">
+            <input class="submit-input" type="submit" value="Next">
         </form>
+
+        <form [formGroup]="formCustomer" *ngIf="formcheck" (ngSubmit)="signUp()">
+            <label>Firstname</label>
+            <input class="input" type="firstname" placeholder="Firstname" autocomplete="firstname" formControlName="firstname" required>
+            <label>Lastname</label>
+            <input class="input" type="lastname" placeholder="Lastname" autocomplete="lastname" formControlName="lastname" required>
+            <label>Address</label>
+            <input class="input" type="address" placeholder="Templane 25" autocomplete="address" formControlName="address" required>
+            <label>Postcode</label>
+            <input class="input" type="postcode" placeholder="Postcode" autocomplete="postcode" formControlName="postcode" required>
+            <label>Phone Number</label>
+            <input class="input" type="phoneNumber" placeholder="Phone Number" autocomplete="phoneNumber" formControlName="phoneNumber" required>
+            <label>Email</label>
+            <input class="input" type="email" placeholder="Email" autocomplete="email" formControlName="email" required pattern="[^ @]*@[^ @]*" required>
+            <input class="submit-input" type="submit" value="Sign Up">
+          </form>
+
     </div>
 </div>

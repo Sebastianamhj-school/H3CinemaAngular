@@ -11,6 +11,7 @@ import {
 } from '@angular/common/http';
 import { Screening } from 'src/Models/Screening';
 import { Booking } from 'src/Models/Booking';
+import { AutoComplete } from 'src/Models/AutoComplete';
 
 
 const baseUrl = 'http://localhost:5000/api/';
@@ -38,6 +39,21 @@ export class APIService {
   Login(body: User): Observable<User> {
     return this.http
       .post<User>(baseUrl + `Users/login`, body, httpOptions);
+  }
+
+  checkUserName(username: string): Observable<boolean> {
+    return this.http.get<boolean>(baseUrl + `Users/CheckUserName?username=${username}`)
+    .pipe(retry(3), catchError(this.handleError));
+  }
+
+  postUser(body: User): Observable<User> {
+    return this.http
+      .post<User>(baseUrl + `Users/CreateUser`, body, httpOptions);
+  }
+
+  async postCustomerSync(body: Customer) //Sync call
+  {
+    return await this.http.post(baseUrl + `Customers`, body, httpOptions).toPromise;
   }
 
   // Get all movies
@@ -123,12 +139,17 @@ export class APIService {
     );
   }
 
+
   getCustomerById(id: number): Observable<Customer> {
     return this.http.get<Customer>(baseUrl + `Customers/${id}`).pipe(
       retry(3),
       catchError(this.handleError)
-    );
+    )}
+  postCustomer(body: Customer): Observable<Customer> {
+    return this.http
+      .post<Customer>(baseUrl + `Customers`, body, httpOptions);
   }
+
 
   getScreenings(): Observable<Screening[]> {
     return this.http.get<Screening[]>(baseUrl + `Screenings`).pipe(
@@ -164,10 +185,21 @@ export class APIService {
       );
   }
 
+  getAutoComplete(type: string): Observable<AutoComplete[]> {
+    return this.http.get<AutoComplete[]>(baseUrl + `AutoComplete/${type}`)
+      .pipe(
+        //Catch error, if error retry 3 times before error
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
   postBooking(body: Booking): Observable<Booking> {
     return this.http
       .post<Booking>(baseUrl + `bookings`, body, httpOptions);
   }
+
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
