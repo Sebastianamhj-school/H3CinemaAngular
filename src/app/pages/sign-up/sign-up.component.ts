@@ -14,10 +14,13 @@ import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operato
 })
 export class SignUpComponent implements OnInit {
   isDarkMode: boolean;
-  signedUp: boolean;
+
   customer: Customer;
   user: User;
   userTaken: boolean;
+
+  formcheck: boolean;
+
   usernameInput: Subject<string> = new Subject();
 
   formUser = new FormGroup({
@@ -39,7 +42,7 @@ export class SignUpComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.signedUp = false;
+    this.formcheck = false;
     this.isDarkMode = this.themeService.isDarkMode;
     this.themeService.themeStateChange.subscribe((value) => {
     this.isDarkMode = value;
@@ -108,11 +111,20 @@ export class SignUpComponent implements OnInit {
   }
 
   submitForm() {
+    //CheckUserExist and checkpassword and make the form valid :)
+    //THANKS SEBASTIAN? XD
     let check = this.checkUserExist();
-    // if (this.checkUserExist()) {
-    //   this.signedUp = true;
-    // }
+    this.formcheck = this.checkPassword();
+  }
 
+  checkPassword(): boolean {
+    let result: boolean = false;
+    if (this.formUser.get('password').value == this.formUser.get('confirmPassword').value && this.formUser.get('password').value != null)
+    {
+      result = true;
+    }
+    console.log(result);
+    return result;
   }
 
 
