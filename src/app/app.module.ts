@@ -22,6 +22,7 @@ import { DialogComponent } from './Components/dialog/dialog.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { TicketComponent } from './Components/ticket/ticket.component';
 import { CreateBoxComponent } from './Components/create-box/create-box.component';
+import { DynamicFormComponent } from './Components/dynamic-form/dynamic-form.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { CreateBoxComponent } from './Components/create-box/create-box.component
     DialogComponent,
     AdminComponent,
     TicketComponent,
-    CreateBoxComponent
+    CreateBoxComponent,
+    DynamicFormComponent
   ],
   imports: [
     BrowserModule,
