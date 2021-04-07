@@ -1,7 +1,7 @@
 import { Postcode } from './Postcode';
 
 export class Customer {
-  Id: number;
+  id: number;
   firstName: string;
   lastName: string;
   address: string;
