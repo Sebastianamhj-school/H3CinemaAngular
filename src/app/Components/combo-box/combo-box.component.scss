@@ -1,37 +1,49 @@
 @import "src/colors.scss";
 
-:host{
-    position: relative;
-    width: 100%;
+:host {
+  position: relative;
+  width: 100%;
+  text-align: center;
 
-    input {
-        padding: 0.8rem 1rem;
-        width: 100%;
-        border-radius: 1rem;
-        border: none;
-        outline: none;
-        background-color: $dark_background_color_dark;
-        color: $dark_text;
+  input {
+    padding: 0.8rem 1rem;
+    width: 50%;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+    background-color: $dark_background_color_dark;
+    color: $dark_text;
+
+    &::-webkit-search-cancel-button {
+      display: none;
     }
+  }
 
-    .dropdown{
-        position: absolute;
-        display: block;
-        width: inherit;
-        max-height: 0;
-        overflow-y: auto;
-        background-color: $dark_background_color_dark;
-        color: $dark_text;
-        box-sizing:border-box;
+  .dropdown {
+    position: absolute;
+    display: block;
+    width: 50%;
+    max-height: 0;
+    overflow-y: auto;
+    background-color: $dark_background_color_dark;
+    color: $dark_text;
+    box-sizing: border-box;
+    left: 50%;
+    transform: translateX(-50%);
 
-        p{
-            padding: .1rem .5rem;
-            cursor: pointer;
-        }
+    p {
+      padding: 0.5rem 0.5rem;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: $dark_background_color;
+      }
     }
+  }
 
-    input:focus + .dropdown{
-        max-height: 10rem;
-        transition: 0.5s max-height ease-in-out;
-    }
+  input:focus + .dropdown {
+    max-height: 10rem;
+    transition: 0.5s max-height ease-in-out;
+  }
 }
