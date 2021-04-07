@@ -40,6 +40,11 @@ export class APIService {
       .post<User>(baseUrl + `Users/login`, body, httpOptions);
   }
 
+  checkUserName(username: string): Observable<boolean> {
+    return this.http.get<boolean>(baseUrl + `Users/CheckUserName?username=${username}`)
+    .pipe(retry(3), catchError(this.handleError));
+  }
+
   postUser(body: User): Observable<User> {
     return this.http
       .post<User>(baseUrl + `Users/CreateUser`, body, httpOptions);

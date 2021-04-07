@@ -3,14 +3,16 @@
         <h1>Sign up</h1>
     </div>
     <div id="content">
-        <form [formGroup]="formUser" *ngIf=!signedUp (submit)="signedUp = true">
+        <form [formGroup]="formUser" *ngIf=!signedUp (submit)="submitForm()">
             <label>Username</label>
-            <input class="input" type="username" placeholder="Usename" autocomplete="username" formControlName="username" required>
+            <input class="input" type="text" (ngModelChange)="test1($event)" placeholder="Usename" autocomplete="username" formControlName="username" required >
+
+
             <label>Password</label>
             <input class="input" type="password" placeholder="Password" autocomplete="current-password" formControlName="password" required>
             <label>Confirm password</label>
             <input class="input" type="password" placeholder="Re-enter password" autocomplete="current-password" formControlName="confirmPassword" required>
-            <input class="submit-input" type="submit" value="Next">
+            <input class="submit-input" type="submit" value="Next" [disabled]="formUser.invalid">
         </form>
 
         <form [formGroup]="formCustomer" *ngIf="signedUp" (ngSubmit)="signUp()">
