@@ -171,6 +171,8 @@ nav {
 footer {
   width: 100%;
   background-color: $dark_navigation-background;
+  user-select: none;
+  -webkit-user-select: none;
 
   .footer-temp {
     display: flex;
