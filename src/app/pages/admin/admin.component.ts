@@ -10,16 +10,23 @@ import { AutoComplete } from 'src/Models/AutoComplete';
 })
 export class AdminComponent implements OnInit {
 
-  navigationItems = ['Movies', 'Screenings', 'Users', 'Customers', 'Bookings'];
-  activeNavigation = '';
-  list: AutoComplete[] = null;
+  navigationItems = [
+    ['Movies', 'square'],
+    ['Screenings', 'square'],
+    ['Users', 'circle'], 
+    ['Customers', 'circle'], 
+    ['Bookings', 'square']
+  ];
+
+  activeNavigation = this.navigationItems[0];
+  
 
   constructor(private themeService: ThemeService, private apiService: APIService) { }
 
   ngOnInit(): void {
-    this.apiService.getAutoComplete("movies").subscribe(dataAPI => {
+    /* this.apiService.getAutoComplete("movies").subscribe(dataAPI => {
       this.list = dataAPI;
-    });
+    }); */
   }
 
   getTheme() {
@@ -27,7 +34,6 @@ export class AdminComponent implements OnInit {
   }
 
   onNavigationItemClick(i: number) {
-    console.log(this.navigationItems[i]);
     this.activeNavigation = this.navigationItems[i];
   }
 
