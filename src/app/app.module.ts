@@ -21,6 +21,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { DialogComponent } from './Components/dialog/dialog.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { TicketComponent } from './Components/ticket/ticket.component';
+import { CreateBoxComponent } from './Components/create-box/create-box.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { TicketComponent } from './Components/ticket/ticket.component';
     ProfileComponent,
     DialogComponent,
     AdminComponent,
-    TicketComponent
+    TicketComponent,
+    CreateBoxComponent
   ],
   imports: [
     BrowserModule,
