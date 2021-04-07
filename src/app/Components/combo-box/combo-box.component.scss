@@ -1,16 +1,28 @@
-:host{
+@import "src/colors.scss";
 
-    input{
+:host{
+    position: relative;
+    width: 100%;
+
+    input {
+        padding: 0.8rem 1rem;
         width: 100%;
-        box-sizing: border-box;
+        border-radius: 1rem;
+        border: none;
+        outline: none;
+        background-color: $dark_background_color_dark;
+        color: $dark_text;
     }
 
-    .option-container{
+    .dropdown{
         position: absolute;
-        max-height: 10rem;
+        display: block;
+        width: inherit;
+        max-height: 0;
         overflow-y: auto;
-        background-color: white;
-        color: black;
+        background-color: $dark_background_color_dark;
+        color: $dark_text;
+        box-sizing:border-box;
 
         p{
             padding: .1rem .5rem;
@@ -18,4 +30,8 @@
         }
     }
 
+    input:focus + .dropdown{
+        max-height: 10rem;
+        transition: 0.5s max-height ease-in-out;
+    }
 }

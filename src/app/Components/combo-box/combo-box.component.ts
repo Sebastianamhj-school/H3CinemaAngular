@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, HostListener, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, ElementRef, Output } from '@angular/core';
 import { AutoComplete } from 'src/Models/AutoComplete';
 
 @Component({
@@ -16,27 +16,18 @@ export class ComboBoxComponent implements OnInit {
   @Input()
   threshhold: number = 1;
 
+  @Output()
+  selectedId = new EventEmitter<number>();
+
   inputValue: string = "";
-  optionsVisible: boolean = false;
 
   ngOnInit(): void {
     
   }
 
-  @HostListener('document:click', ['$event'])
-  clickout(event :Event) {
-    if (!this.eRef.nativeElement.contains(event.target)) {
-      this.optionsVisible = false;
-    }
-  }
-
   getValue(item: AutoComplete): void {
     this.inputValue = item.value;
-    this.optionsVisible = false;
-  }
-
-  onFocusInput(): void {
-    this.optionsVisible = true;
+    this.selectedId.emit(item.id);
   }
 
   filterOptions(input: string): AutoComplete[] {

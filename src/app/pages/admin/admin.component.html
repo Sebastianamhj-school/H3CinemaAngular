@@ -9,11 +9,9 @@
             </ul>
             <div class="divider"></div>
             <div id="content" class="container">
-                <div id="search-bar">
-                    <input type="search" placeholder="Search..." />
-                </div>
                 <div *ngIf="activeNavigation == navigationItems[0]">
-                    <p>This is booking</p>
+                    <app-combo-box (selectedId)="movieId" [content]="searchList"></app-combo-box>
+                    <p>This is Movies</p>
                 </div>
                 <div *ngIf="activeNavigation == navigationItems[1]">
                     <p>This is Screenings</p>

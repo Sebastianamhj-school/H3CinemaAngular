@@ -1,7 +1,7 @@
-<input [value]="inputValue" [(ngModel)]="inputValue" 
-(click)="onFocusInput()">
+<input type="search" placeholder="Search..."
+    [value]="inputValue" [(ngModel)]="inputValue">
 
-<div class="option-container" *ngIf="optionsVisible">
+<div class="dropdown">
 
     <p *ngFor="let item of filterOptions(inputValue)" (click)="getValue(item)">{{item.value}}</p>
 
