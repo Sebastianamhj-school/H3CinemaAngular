@@ -19,15 +19,11 @@ export class AdminComponent implements OnInit {
   ];
 
   activeNavigation: string[] = this.navigationItems[0];
-  searchList: AutoComplete[]
-  
 
   constructor(private themeService: ThemeService, private apiService: APIService) { }
 
   ngOnInit(): void {
-    this.apiService.getAutoComplete("movies").subscribe(dataAPI => {
-      this.searchList = dataAPI;
-    });
+    
   }
 
   getTheme() {
