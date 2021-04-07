@@ -58,7 +58,7 @@ export class ScreeningComponent implements OnInit {
   }
 
   minusTicket() {
-    if (this.tickets != 0) {
+    if (this.tickets != 1) {
       this.tickets--;
     }
   }
