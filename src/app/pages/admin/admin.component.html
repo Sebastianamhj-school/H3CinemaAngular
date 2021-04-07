@@ -2,8 +2,7 @@
     <div class="wrapper">
         <div id="navigation-tab">
             <ul>
-                <li 
-                    *ngFor="let item of navigationItems; let i = index" 
+                <li *ngFor="let item of navigationItems; let i = index" 
                     (click)="onNavigationItemClick(i)">
                         <p [ngClass]="{'active-navigation': item == activeNavigation}">{{item[0]}}</p>
                     </li>

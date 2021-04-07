@@ -1,0 +1,21 @@
+:host{
+
+    input{
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .option-container{
+        position: absolute;
+        max-height: 10rem;
+        overflow-y: auto;
+        background-color: white;
+        color: black;
+
+        p{
+            padding: .1rem .5rem;
+            cursor: pointer;
+        }
+    }
+
+}

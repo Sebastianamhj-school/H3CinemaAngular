@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { APIService } from 'src/app/services/api.service';
 import { ThemeService } from 'src/app/services/theme.service';
+import { AutoComplete } from 'src/Models/AutoComplete';
 
 @Component({
   selector: 'app-admin',
@@ -19,9 +21,12 @@ export class AdminComponent implements OnInit {
   activeNavigation = this.navigationItems[0];
   
 
-  constructor(private themeService: ThemeService) { }
+  constructor(private themeService: ThemeService, private apiService: APIService) { }
 
   ngOnInit(): void {
+    /* this.apiService.getAutoComplete("movies").subscribe(dataAPI => {
+      this.list = dataAPI;
+    }); */
   }
 
   getTheme() {
