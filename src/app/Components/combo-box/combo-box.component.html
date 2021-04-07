@@ -1,0 +1,8 @@
+<input [value]="inputValue" [(ngModel)]="inputValue" 
+(click)="onFocusInput()">
+
+<div class="option-container" *ngIf="optionsVisible">
+
+    <p *ngFor="let item of filterOptions(inputValue)" (click)="getValue(item)">{{item.value}}</p>
+
+</div>

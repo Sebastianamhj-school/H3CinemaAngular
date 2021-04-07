@@ -2,13 +2,13 @@
     <div class="wrapper">
         <div id="navigation-tab">
             <ul>
-                <li 
-                    *ngFor="let item of navigationItems; let i = index" 
+                <li *ngFor="let item of navigationItems; let i = index" 
                     (click)="onNavigationItemClick(i)">
-                        <p [ngClass]="{'active-navigation': item == activeNavigation}">{{item}}</p>
-                    </li>
+                    <p [ngClass]="{'active-navigation': item == activeNavigation}">{{item}}</p>
+                </li>
             </ul>
             <div class="divider"></div>
+            <app-combo-box [content]="list"></app-combo-box>
         </div>
     </div>
 </div>
