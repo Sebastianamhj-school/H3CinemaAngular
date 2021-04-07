@@ -8,8 +8,16 @@ import { ThemeService } from 'src/app/services/theme.service';
 })
 export class AdminComponent implements OnInit {
 
-  navigationItems = ['Movies', 'Screenings', 'Users', 'Customers', 'Bookings'];
-  activeNavigation = '';
+  navigationItems = [
+    ['Movies', 'square'],
+    ['Screenings', 'square'],
+    ['Users', 'circle'], 
+    ['Customers', 'circle'], 
+    ['Bookings', 'square']
+  ];
+
+  activeNavigation = this.navigationItems[0];
+  
 
   constructor(private themeService: ThemeService) { }
 
@@ -21,7 +29,6 @@ export class AdminComponent implements OnInit {
   }
 
   onNavigationItemClick(i: number) {
-    console.log(this.navigationItems[i]);
     this.activeNavigation = this.navigationItems[i];
   }
 

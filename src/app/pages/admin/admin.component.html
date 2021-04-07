@@ -5,10 +5,31 @@
                 <li 
                     *ngFor="let item of navigationItems; let i = index" 
                     (click)="onNavigationItemClick(i)">
-                        <p [ngClass]="{'active-navigation': item == activeNavigation}">{{item}}</p>
+                        <p [ngClass]="{'active-navigation': item == activeNavigation}">{{item[0]}}</p>
                     </li>
             </ul>
             <div class="divider"></div>
+            <div id="content" class="container">
+                <div id="search-bar">
+                    <input type="search" placeholder="Search..." />
+                </div>
+                <div *ngIf="activeNavigation == navigationItems[0]">
+                    <p>This is booking</p>
+                </div>
+                <div *ngIf="activeNavigation == navigationItems[1]">
+                    <p>This is Screenings</p>
+                </div>
+                <div *ngIf="activeNavigation == navigationItems[2]">
+                    <p>This is Users</p>
+                </div>
+                <div *ngIf="activeNavigation == navigationItems[3]">
+                    <p>This is Customers</p>
+                </div>
+                <div *ngIf="activeNavigation == navigationItems[4]">
+                    <p>This is Bookings</p>
+                </div>
+                <app-create-box box="activeNavigation"></app-create-box>
+            </div>
         </div>
     </div>
 </div>
