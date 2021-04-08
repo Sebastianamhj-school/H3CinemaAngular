@@ -18,7 +18,8 @@ export class ProfileComponent implements OnInit {
       private tokenService: TokenStorageService,
       private themeService: ThemeService,
       private api: APIService,
-      private route: Router
+      private route: Router,
+      private router: Router
     ) { }
 
   customerInformation: Customer;
@@ -45,5 +46,17 @@ export class ProfileComponent implements OnInit {
   signOut() {
     this.tokenService.signOut();
     this.route.navigate(['/front-page']);
+  }
+
+  deleteAccount() {
+    console.log("Not Implemented yet");
+    let userId = this.tokenService.getUserId();
+    this.api.deleteUser(userId).toPromise().then(() => {
+      console.log("Success")
+      this.signOut();
+    }).catch(err => {
+      console.log(err)
+    })
+
   }
 }

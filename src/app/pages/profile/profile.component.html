@@ -18,14 +18,14 @@
                     <div *ngIf="!bookings" style="align-items: center; justify-content: center;" class="container column fill">
                         <h2>You have no Tickets reserved</h2>
                     </div>
-                    <div *ngIf="bookings">
+                    <div class="tickets-container" *ngIf="bookings">
                         <app-ticket *ngFor="let booking of bookings" [ticket]="booking"></app-ticket>
                     </div>
                 </div>
             </div>
         </div>
         <div style="align-items: center; margin-bottom: 5rem;" class="container column">
-            <button class="btn-red">Delete Account</button>
+            <button (click)="deleteAccount()" class="btn-red">Delete Account</button>
         </div>
     </div>
 </div>

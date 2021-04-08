@@ -211,6 +211,11 @@ export class APIService {
       .post<Booking>(baseUrl + `bookings`, body, httpOptions);
   }
 
+  deleteUser(id: number): Observable<User> {
+    return this.http
+      .delete<User>(baseUrl + `users/${id}`);
+  }
+
 
 
   private handleError(error: HttpErrorResponse) {
