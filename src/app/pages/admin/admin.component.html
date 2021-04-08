@@ -33,13 +33,15 @@
                             <input type="text" formControlName="releaseDate" placeholder="Release date">
                             <div>
                                 <h2>Genres</h2>
+                                <app-combo-box (selectedItem)="getValueFromComboBox($event)" type="Genres" #genreCombo></app-combo-box>
                                 <button type="button" (click)="addGenre()">Add Genre</button>
                             </div>
 
                             <div *ngFor="let genre of genres.controls; let i = index">
-                                <label>Genre:</label>
-                                <input type="text" [formControl]="genres.controls[i]">
-                                <button (click)="removeGenre(i)">X</button>
+                                <!-- <label>Genre:</label> -->
+                                <p>{{ genre.value }}</p>
+                                <!-- input type="text" [formControl]="genres.controls[i]"> -->
+                                <button (click)="removeGenre(i)" type="button">X</button>
                             </div>
                             <label>Description:</label>
                             <input type="text" formControlName="description" placeholder="description">

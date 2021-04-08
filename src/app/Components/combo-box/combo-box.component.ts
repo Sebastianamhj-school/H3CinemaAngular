@@ -14,7 +14,7 @@ export class ComboBoxComponent implements OnInit {
   constructor(private api: APIService) { }
   
   @Output()
-  selectedId = new EventEmitter<number>();
+  selectedItem = new EventEmitter<AutoComplete>();
 
   @ViewChild('SearchInput', { static: true })
   SearchInput: ElementRef;
@@ -41,15 +41,14 @@ export class ComboBoxComponent implements OnInit {
   getValue(item: AutoComplete): void {
     this.SearchInput.nativeElement.value = item.value;
     this.content = null;
-    this.selectedId.emit(item.id);
+    this.selectedItem.emit(item);
   }
 
   onEnter(): void{
     if (this.content.length > 0) {
       this.SearchInput.nativeElement.value = this.content[0].value;
-      this.selectedId.emit(this.content[0].id);
+      this.selectedItem.emit(this.content[0]);
       this.content = null;
     }
-    
   }
 }

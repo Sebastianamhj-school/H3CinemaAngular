@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder } from '@angular/forms';
 import { APIService } from 'src/app/services/api.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { AutoComplete } from 'src/Models/AutoComplete';
@@ -27,7 +27,6 @@ export class AdminComponent implements OnInit {
     imgUrl: [''],
     releaseDate: [''],
     genre: this.fb.array([
-      this.fb.control('')
     ]),
     description: [''],
   });
@@ -35,11 +34,12 @@ export class AdminComponent implements OnInit {
   activeNavigation: string[] = this.navigationItems[0];
   movieId: number;
   status: string;
+  genreItem: AutoComplete;
 
   constructor
   (
     private themeService: ThemeService,
-    private apiService: APIService,
+    private api: APIService,
     private fb: FormBuilder
   ) {
   }
@@ -66,11 +66,22 @@ export class AdminComponent implements OnInit {
   }
 
   addGenre() {
-    this.genres.push(this.fb.control(''))
+    /* this.genres.push(this.fb.control('')) */
+    if (this.genreItem) {
+      this.api.getGenreById(this.genreItem.id).subscribe(dataAPI => {
+        //this.content = dataAPI;
+        this.genres.push(this.fb.control(dataAPI.name))
+        console.log(this.fb)
+      });
+    }
   }
 
   removeGenre(genreIndex: number) {
     this.genres.removeAt(genreIndex);
+  }
+
+  getValueFromComboBox(val) {
+    this.genreItem = val;
   }
 
   get genres(): FormArray {

@@ -12,6 +12,7 @@ import {
 import { Screening } from 'src/Models/Screening';
 import { Booking } from 'src/Models/Booking';
 import { AutoComplete } from 'src/Models/AutoComplete';
+import { Genre } from 'src/Models/Genre';
 
 
 const baseUrl = 'http://localhost:5000/api/';
@@ -161,6 +162,14 @@ export class APIService {
 
   getScreeningsById(id: number): Observable<Screening> {
     return this.http.get<Screening>(baseUrl + `Screenings/${id}`).pipe(
+      //Catch error, if error retry 3 times before error
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
+  getGenreById(id: number): Observable<Genre> {
+    return this.http.get<Genre>(baseUrl + `Genres/${id}`).pipe(
       //Catch error, if error retry 3 times before error
       retry(3),
       catchError(this.handleError)
