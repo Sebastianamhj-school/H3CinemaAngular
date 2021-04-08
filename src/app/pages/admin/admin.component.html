@@ -12,10 +12,11 @@
             <div id="content" class="container">
                 <div class="fill container column center" *ngIf="activeNavigation == navigationItems[0]">
                     <div id="search-bar">
-                        <app-combo-box (selectedId)="movieId" type="movies"></app-combo-box>
+                        <app-combo-box (selectedItem)="getEditMovieId($event)" type="movies"></app-combo-box>
                     </div>
                     <div class="fill container column center">
-                        <h1>Creating Movie</h1>
+                        <h1 *ngIf="!isEditing">Creating Movie</h1>
+                        <h1 *ngIf="isEditing">Editing Movie</h1>
                         <form id="movie-form" class="fill container column center" [formGroup]="movieFormGroup" (submit)="movieSubmit()">
                             <label>Title:</label>
                             <input type="text" formControlName="title" placeholder="title">
@@ -43,7 +44,11 @@
                             </div>
                             <label>Description:</label>
                             <input type="text" formControlName="description" placeholder="description">
-                            <input type="submit" value="submit">
+                            <input *ngIf="!isEditing" type="submit" value="Create Movie">
+                            <div *ngIf="isEditing">
+                                <input type="submit" value="Update Movie">
+                                <input type="button" value="Delete Movie" (click)="deleteMovie()">
+                            </div>
                         </form>
                             
                     </div>

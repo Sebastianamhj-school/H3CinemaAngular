@@ -35,6 +35,7 @@ export class AdminComponent implements OnInit {
   });
 
   activeNavigation: string[] = this.navigationItems[0];
+  isEditing: boolean;
   movieId: number;
   ageRatingItem: AutoComplete;
   genreItem: AutoComplete;
@@ -129,8 +130,26 @@ export class AdminComponent implements OnInit {
     this.genreItem = val;
   }
   getAgeRatingValue(val) {
-    this.movieFormGroup.get('ageRating').setValue(val.id);
+    this.movieFormGroup.get('ageRating').setValue(val.value);
     console.log(this.movieFormGroup.get('ageRating').value);
+  }
+
+  getEditMovieId(val) {
+    this.isEditing = true;
+    this.api.getMovieSpecific(val.id).subscribe((dataAPI) => {
+      console.log(dataAPI);
+      this.movieId = dataAPI.id;
+      this.movieFormGroup.get('title').setValue(dataAPI.title);
+      this.movieFormGroup.get('runtime').setValue(dataAPI.runtime);
+      this.movieFormGroup.get('rating').setValue(dataAPI.rating);
+      this.movieFormGroup.get('ageRating').setValue(dataAPI.ageRating);
+      this.movieFormGroup.get('imgUrl').setValue(dataAPI.imgUrl);
+      this.movieFormGroup.get('releaseDate').setValue(dataAPI.releaseDate.toDateString);
+      for (let index = 0; index < dataAPI.genre.length; index++) {
+        this.genres.push(this.fb.control(dataAPI.genre[index]));
+      }
+      this.movieFormGroup.get('description').setValue(dataAPI.description);
+    })
   }
 
   get genres(): FormArray {
@@ -150,11 +169,40 @@ export class AdminComponent implements OnInit {
   }
 
   movieSubmit() {
-    this.api.postMovie(this.movieFormGroup.value).subscribe((dataAPI) => {
-      console.log("movie has been created");
-    }, () => {
-      console.log("error on movie creation");
-    });
+    if (!this.isEditing) {
+      this.api.postMovie(this.movieFormGroup.value).subscribe((dataAPI) => {
+        console.log("movie has been created");
+      }, () => {
+        console.log("error on movie creation");
+      });
+    } else {
+      let tempForm = this.fb.group({
+        id: [this.movieId],
+        title: [this.movieFormGroup.get('title').value],
+        runtime: [this.movieFormGroup.get('runtime').value],
+        rating: [this.movieFormGroup.get('rating').value],
+        ageRating: [this.movieFormGroup.get('ageRating').value],
+        imgUrl: [this.movieFormGroup.get('imgUrl').value],
+        releaseDate: [this.movieFormGroup.get('releaseDate').value],
+        genre: this.fb.array([this.movieFormGroup.get('genre').value]),
+        description: [this.movieFormGroup.get('description').value],
+        directors: this.fb.array([]),
+        screenWriters: this.fb.array([]),
+        scriptWriters: this.fb.array([]),
+        actors: this.fb.array([]),
+      })
+      this.api.updateMovie(tempForm.value).subscribe((dataAPI) => {
+        console.log('movie was update i guess');
+      }, () => {
+        console.log('error on movie update');
+      });
+    }
+  }
+
+  deleteMovie() {
+    this.api.deleteMovie(this.movieId).subscribe((dataAPI) => {
+      console.log("delete happend i guess");
+    })
   }
 
 }

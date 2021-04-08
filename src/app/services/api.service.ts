@@ -223,6 +223,11 @@ export class APIService {
       .delete<User>(baseUrl + `users/${id}`);
   }
 
+  deleteMovie(id: number): Observable<Movie> {
+    return this.http
+      .delete<Movie>(baseUrl + `Movies/${id}`);
+    }
+
 
 
   private handleError(error: HttpErrorResponse) {
