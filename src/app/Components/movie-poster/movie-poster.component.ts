@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Movie } from 'src/Models/Movie';
 import { ThemeService } from 'src/app/services/theme.service';
 
@@ -7,15 +7,12 @@ import { ThemeService } from 'src/app/services/theme.service';
   templateUrl: './movie-poster.component.html',
   styleUrls: ['./movie-poster.component.scss']
 })
-export class MoviePosterComponent implements OnInit {
+export class MoviePosterComponent {
 
   @Input()
   movie: Movie;
   
   constructor(private themeService: ThemeService) { }
-
-  ngOnInit(): void {
-  }
 
   getTheme() {
     return this.themeService.isDarkMode;

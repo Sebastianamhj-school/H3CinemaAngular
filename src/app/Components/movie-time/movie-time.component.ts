@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Screening } from 'src/Models/Screening';
 
 @Component({
@@ -6,12 +6,8 @@ import { Screening } from 'src/Models/Screening';
   templateUrl: './movie-time.component.html',
   styleUrls: ['./movie-time.component.scss']
 })
-export class MovieTimeComponent implements OnInit {
+export class MovieTimeComponent {
   
   @Input()
   screening: Screening;
-
-  ngOnInit(): void {
-  }
-
 }
