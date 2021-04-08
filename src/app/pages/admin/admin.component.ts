@@ -23,18 +23,25 @@ export class AdminComponent implements OnInit {
     title: [''],
     runtime: [''],
     rating: [''],
-    ageRating: [''],
+    ageRating: this.fb.array([]),
     imgUrl: [''],
     releaseDate: [''],
-    genre: this.fb.array([
-    ]),
+    genre: this.fb.array([]),
     description: [''],
+    directors: this.fb.array([]),
+    screenWriters: this.fb.array([]),
+    scriptWriters: this.fb.array([]),
+    actors: this.fb.array([]),
   });
 
   activeNavigation: string[] = this.navigationItems[0];
   movieId: number;
-  status: string;
+  ageRatingItem: AutoComplete;
   genreItem: AutoComplete;
+  directorItem: AutoComplete;
+  screenWriterItem: AutoComplete;
+  scriptWriterItem: AutoComplete;
+  actorItem: AutoComplete;
 
   constructor
   (
@@ -48,44 +55,108 @@ export class AdminComponent implements OnInit {
     
   }
 
-  exitCreate() {
-    this.status = "null";
-  }
-
   getTheme() {
     return this.themeService.isDarkMode;
   }
 
   onNavigationItemClick(i: number) {
-    this.status = "null";
     this.activeNavigation = this.navigationItems[i];
   }
 
-  receiveBoxClicked(event) {
-    this.status = event;
+  addAgeRating() {
+    // if (this.ageRatingItem) {
+    //   this.api.getAgeRatingById(this.ageRatingItem.id).subscribe(dataAPI => {
+    //     this.ageRatings.push(this.fb.control(dataAPI.name));
+    //   })
+    // }
   }
-
   addGenre() {
     /* this.genres.push(this.fb.control('')) */
     if (this.genreItem) {
       this.api.getGenreById(this.genreItem.id).subscribe(dataAPI => {
         //this.content = dataAPI;
-        this.genres.push(this.fb.control(dataAPI.name))
-        console.log(this.fb)
+        this.genres.push(this.fb.control(dataAPI.name));
+        console.log(this.fb);
       });
     }
   }
+  addDirector() {
+    // if (this.directorItem) {
+    //   this.api.getDirectorById(this.directorItem.id).subscribe(dataAPI => {
+        
+    //     this.directors.push(this.fb.control(dataAPI.name));
+    //     console.log(this.fb);
+    //   });
+    // }
+  }
+  addScreenWriter() {
+    // if (this.screenWriterItem) {
+    //   this.api.getScreenWriterById(this.screenWriterItem.id).subscribe(dataAPI => {
+        
+    //     this.screenWriters.push(this.fb.control(dataAPI.name));
+    //     console.log(this.fb);
+    //   });
+    // }
+  }
+  addScriptWriter() {
+    // if (this.scriptWriterItem) {
+    //   this.api.getScriptWriterById(this.scriptWriterItem.id).subscribe(dataAPI => {
+        
+    //     this.directors.push(this.fb.control(dataAPI.name));
+    //     console.log(this.fb);
+    //   });
+    // }
+  }
+  addActor() {
+    // if (this.actorItem) {
+    //   this.api.getActorById(this.actorItem.id).subscribe(dataAPI => {
+        
+    //     this.directors.push(this.fb.control(dataAPI.name));
+    //     console.log(this.fb);
+    //   });
+    // }
+  }
 
-  removeGenre(genreIndex: number) {
-    this.genres.removeAt(genreIndex);
+  removeAgeRating(index: number) {
+    this.ageRatings.removeAt(index);
+  }
+  removeGenre(index: number) {
+    this.genres.removeAt(index);
+  }
+  removeDirector(index: number) {
+    this.directors.removeAt(index);
+  }
+  removeScreenWriter(index: number) {
+    this.screenWriters.removeAt(index);
+  }
+  removeScriptWriter(index: number) {
+    this.scriptWriters.removeAt(index);
+  }
+  removeActor(index: number) {
+    this.actors.removeAt(index);
   }
 
   getValueFromComboBox(val) {
     this.genreItem = val;
   }
 
+  get ageRatings(): FormArray {
+    return this.movieFormGroup.get('ageRating') as FormArray;
+  }
   get genres(): FormArray {
     return this.movieFormGroup.get("genre") as FormArray;
+  }
+  get directors(): FormArray {
+    return this.movieFormGroup.get('directors') as FormArray;
+  }
+  get screenWriters(): FormArray {
+    return this.movieFormGroup.get('screenWriters') as FormArray;
+  }
+  get scriptWriters(): FormArray {
+    return this.movieFormGroup.get('scriptWriters') as FormArray;
+  }
+  get actors(): FormArray {
+    return this.movieFormGroup.get('actors') as FormArray;
   }
 
   movieSubmit() {
