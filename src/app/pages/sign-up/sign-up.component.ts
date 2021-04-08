@@ -46,36 +46,19 @@ export class SignUpComponent implements OnInit {
     this.isDarkMode = this.themeService.isDarkMode;
     this.themeService.themeStateChange.subscribe((value) => {
     this.isDarkMode = value;
-
-
-    // this.usernameControl.valueChanges.pipe(
-
-    //   distinctUntilChanged()
-    // ).subscribe(value => {
-    //   console.log(value);
-    //   this.api.checkUserName(value).subscribe(data => {
-    //     this.userTaken = data;
-    //     console.log(value);
-    //     console.log(this.userTaken);
-    //   });
-    // })
-
-    this.usernameInput.pipe(debounceTime(500),distinctUntilChanged())
-    .subscribe(data => {
-      console.log(data);
-      this.api.checkUserName(data)
-      .subscribe(api => {
-        this.userTaken = api;
-        console.log(this.userTaken);
-      });
-    })
-
     });
+
+    this.usernameInput.pipe(debounceTime(500), distinctUntilChanged()).subscribe(data => {
+      console.log(data);
+      this.api.checkUserName(data).subscribe(value => {
+        this.userTaken = value;
+        console.log(this.userTaken);
+      })
+    })
   }
 
   test1(event){
     this.usernameInput.next(event);
-
   }
 
 
@@ -113,6 +96,7 @@ export class SignUpComponent implements OnInit {
   submitForm() {
     //CheckUserExist and checkpassword and make the form valid :)
     //THANKS SEBASTIAN? XD
+    console.log(this.usernameInput);
     let check = this.checkUserExist();
     this.formcheck = this.checkPassword();
   }
