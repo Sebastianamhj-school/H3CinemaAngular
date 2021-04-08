@@ -28,7 +28,7 @@
                             <label>Image URL:</label>
                             <input type="text" formControlName="imgUrl" placeholder="Image URL">
                             <label>Release date:</label>
-                            <input type="text" formControlName="releaseDate" placeholder="Release date">
+                            <input type="date" formControlName="releaseDate" placeholder="Release date">
                             <div>
                                 <h2>Genres</h2>
                                 <app-combo-box (selectedItem)="getValueFromComboBox($event)" type="Genres" #genreCombo></app-combo-box>

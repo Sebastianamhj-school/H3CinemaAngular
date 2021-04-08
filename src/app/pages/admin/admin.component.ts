@@ -130,6 +130,7 @@ export class AdminComponent implements OnInit {
   }
   getAgeRatingValue(val) {
     this.movieFormGroup.get('ageRating').setValue(val.id);
+    console.log(this.movieFormGroup.get('ageRating').value);
   }
 
   get genres(): FormArray {
@@ -149,7 +150,11 @@ export class AdminComponent implements OnInit {
   }
 
   movieSubmit() {
-    
+    this.api.postMovie(this.movieFormGroup.value).subscribe((dataAPI) => {
+      console.log("movie has been created");
+    }, () => {
+      console.log("error on movie creation");
+    });
   }
 
 }
