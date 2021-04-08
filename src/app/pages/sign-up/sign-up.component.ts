@@ -47,7 +47,7 @@ export class SignUpComponent implements OnInit {
     this.formcheck = false;
     this.isDarkMode = this.themeService.isDarkMode;
     this.themeService.themeStateChange.subscribe((value) => {
-    this.isDarkMode = value;
+      this.isDarkMode = value;
     });
     this.passwordMatch = this.checkPassword();
 

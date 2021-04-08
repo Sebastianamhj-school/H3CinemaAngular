@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-create-box',
@@ -6,12 +7,20 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./create-box.component.scss']
 })
 export class CreateBoxComponent implements OnInit {
+  @Output() createClicked = new EventEmitter<string>();
+
   @Input() box: string;
+  
 
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  boxClicked() {
+    console.log('clicked?');
+    this.createClicked.emit('create');
   }
 
 }

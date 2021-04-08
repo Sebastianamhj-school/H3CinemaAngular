@@ -62,26 +62,35 @@ export class BookingSeatComponent implements OnInit {
     let seatIndex = row.indexOf(seat);
 
     for (let i = 0; i < this.bookingAmount; i++) {
+      // If there is a selected seat out of bound set to null.
       if (i > row.length) {
         tempSeats[i] = null
       }
+      // Set the selected seat.
       else if (row[seatIndex + i]) {
         tempSeats[i] = this.getSeat(row[seatIndex + i]);
-      } else {
+        
+      }
+      // catch all error.
+      else {
         tempSeats[i] = null;
       }
     }
+    // Checks if there was any nulls in selected seats before continues.
     if (!tempSeats.includes(null)) {
       this.selectedSeats = tempSeats;
       this.statusMessage = ""
       this.selectedSeatsEvent.emit(this.selectedSeats);
-    } else {
+    }
+    // Gives you an error message.
+    else {
       this.statusMessage = "Can't select this seat."
     }
   }
 
+  // Locally used function used in setSelectedSeat to check if seat is booked or not.
   private getSeat(seat: Seat): Seat{
-    if (seat.isBooked != true) {
+    if (seat.isBooked == false) {
       return seat;
     }
     return null;
