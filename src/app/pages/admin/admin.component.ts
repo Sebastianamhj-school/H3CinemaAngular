@@ -65,7 +65,7 @@ export class AdminComponent implements OnInit {
 
   addAgeRating() {
     // if (this.ageRatingItem) {
-    //   this.api.getAgeRatingById(this.ageRatingItem.id).subscribe(dataAPI => {
+    //   this.api.getAgeRating(this.ageRatingItem.id).subscribe(dataAPI => {
     //     this.ageRatings.push(this.fb.control(dataAPI.name));
     //   })
     // }
