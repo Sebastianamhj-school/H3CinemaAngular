@@ -1,4 +1,7 @@
-import { Component, Input, OnInit, EventEmitter, ElementRef, Output } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, ElementRef, Output, ViewChild, OnDestroy } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { APIService } from 'src/app/services/api.service';
 import { AutoComplete } from 'src/Models/AutoComplete';
 
 @Component({
@@ -8,38 +11,47 @@ import { AutoComplete } from 'src/Models/AutoComplete';
 })
 export class ComboBoxComponent implements OnInit {
 
-  constructor(private eRef: ElementRef) { }
+  constructor(private api: APIService) { }
   
-  @Input()
-  content: AutoComplete[] = null;
-
-  @Input()
-  threshhold: number = 1;
-
   @Output()
   selectedId = new EventEmitter<number>();
+
+  @ViewChild('SearchInput', { static: true })
+  SearchInput: ElementRef;
+
+  @Input()
+  type: string;
+
+  content: AutoComplete[] = [];
 
   inputValue: string = "";
 
   ngOnInit(): void {
-    
+    fromEvent(this.SearchInput.nativeElement, 'keyup').pipe(
+      map((event: any) => {
+        return event.target.value;
+      }),
+      debounceTime(150),
+      distinctUntilChanged()
+    ).subscribe((text: string) => {
+      this.api.getAutoComplete(this.type , text).subscribe(dataAPI => {
+        this.content = dataAPI;
+      });
+    });
   }
 
   getValue(item: AutoComplete): void {
-    this.inputValue = item.value;
+    this.SearchInput.nativeElement.value = item.value;
+    this.content = null;
     this.selectedId.emit(item.id);
   }
 
-  filterOptions(input: string): AutoComplete[] {
-    if (!this.content) {
-      return null;
+  onEnter(): void{
+    if (this.content.length > 0) {
+      this.SearchInput.nativeElement.value = this.content[0].value;
+      this.selectedId.emit(this.content[0].id);
+      this.content = null;
     }
-
-    let filter = this.content.filter(val => val.value.toLowerCase().includes(input.toLowerCase()));
-    if (this.inputValue.length < this.threshhold) {
-      return null;
-    }
-
-    return filter;
+    
   }
 }
