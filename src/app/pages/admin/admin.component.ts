@@ -19,7 +19,8 @@ export class AdminComponent implements OnInit {
   ];
 
   activeNavigation: string[] = this.navigationItems[0];
-  searchList: AutoComplete[]
+  searchList: AutoComplete[];
+  movieId: number;
   
 
   constructor(private themeService: ThemeService, private apiService: APIService) { }
