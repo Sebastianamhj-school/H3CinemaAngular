@@ -32,6 +32,11 @@
       align-items: left;
       margin: 2.5rem 0 0 5rem;
 
+      .btn-disabled {
+      background-color: grey ;
+      cursor:not-allowed;
+      }
+
       label {
         font-weight: 700;
         margin: 1rem 0 0.5rem 0.5rem;
@@ -49,13 +54,14 @@
       }
     }
 
+
     .submit-input {
       width: 50%;
       padding: 0.8rem;
       border-radius: 1rem;
       border: none;
       outline: none;
-      background-color: $dark_accent-color;
+       background-color: $dark_accent-color;
       color: $dark_text;
       margin-top: 2.5rem;
       cursor: pointer;
@@ -63,6 +69,7 @@
     }
   }
 }
+
 
 .is-light-mode {
   background-color: $light_background-color;
