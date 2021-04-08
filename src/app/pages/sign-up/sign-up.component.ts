@@ -2,11 +2,11 @@ import { Router } from '@angular/router';
 import { APIService } from 'src/app/services/api.service';
 import { Customer } from './../../../Models/Customer';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, Validators, FormControl, FormGroup, ValidationErrors, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  Validators, FormControl, FormGroup } from '@angular/forms';
 import { ThemeService } from 'src/app/services/theme.service';
 import { User } from 'src/Models/User';
-import { Observable, of, timer, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
 @Component({
   selector: 'app-sign-up',

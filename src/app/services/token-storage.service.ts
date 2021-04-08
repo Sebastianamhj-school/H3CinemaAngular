@@ -50,6 +50,11 @@ export class TokenStorageService {
     return temp.CustomerId
   }
 
+  public getUserId() {
+    var temp = this.decodeToken();
+    return temp.unique_name;
+  }
+
   public isTokenValid(): any {
     if (this.isTokenExpired() && this.getToken() !=null) {
       return true;
