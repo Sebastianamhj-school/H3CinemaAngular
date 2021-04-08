@@ -45,7 +45,7 @@ export class SignUpComponent implements OnInit {
     this.formcheck = false;
     this.isDarkMode = this.themeService.isDarkMode;
     this.themeService.themeStateChange.subscribe((value) => {
-    this.isDarkMode = value;
+      this.isDarkMode = value;
     });
 
     this.usernameInput.pipe(debounceTime(500), distinctUntilChanged()).subscribe(data => {
