@@ -10,11 +10,43 @@
             </ul>
             <div class="divider"></div>
             <div id="content" class="container">
-                <div class="fill" *ngIf="activeNavigation == navigationItems[0]">
-                    <div id="search-bar">
+                <div class="fill container column center" *ngIf="activeNavigation == navigationItems[0]">
+                    <div *ngIf="status == 'null' || !status" id="search-bar">
                         <app-combo-box (selectedId)="movieId" type="movies"></app-combo-box>
                     </div>
-                    <p>This is booking</p>
+                    <app-create-box *ngIf="status == 'null' || !status" box="activeNavigation" (createClicked)="receiveBoxClicked($event)"></app-create-box>
+                    <div class="fill container column center" *ngIf="status == 'create'">
+                        <button (click)="exitCreate()">back</button>
+                        <h1>Creating Movie</h1>
+                        <form id="movie-form" class="fill container column center" [formGroup]="movieFormGroup" (submit)="movieSubmit()">
+                            <label>Title:</label>
+                            <input type="text" formControlName="title" placeholder="title">
+                            <label>Runtime:</label>
+                            <input type="text" formControlName="runtime" placeholder="runtime">
+                            <label>Rating:</label>
+                            <input type="text" formControlName="rating" placeholder="rating">
+                            <label>Age rating:</label>
+                            <input type="text" formControlName="ageRating" placeholder="Age rating">
+                            <label>Image URL:</label>
+                            <input type="text" formControlName="imgUrl" placeholder="Image URL">
+                            <label>Release date:</label>
+                            <input type="text" formControlName="releaseDate" placeholder="Release date">
+                            <div>
+                                <h2>Genres</h2>
+                                <button type="button" (click)="addGenre()">Add Genre</button>
+                            </div>
+
+                            <div *ngFor="let genre of genres.controls; let i = index">
+                                <label>Genre:</label>
+                                <input type="text" [formControl]="genres.controls[i]">
+                                <button (click)="removeGenre(i)">X</button>
+                            </div>
+                            <label>Description:</label>
+                            <input type="text" formControlName="description" placeholder="description">
+                            <input type="submit" value="submit">
+                        </form>
+                            
+                    </div>
                 </div>
                 <div *ngIf="activeNavigation == navigationItems[1]">
                     <p>This is Screenings</p>
@@ -28,7 +60,7 @@
                 <div *ngIf="activeNavigation == navigationItems[4]">
                     <p>This is Bookings</p>
                 </div>
-                <app-create-box box="activeNavigation"></app-create-box>
+                
             </div>
         </div>
     </div>
