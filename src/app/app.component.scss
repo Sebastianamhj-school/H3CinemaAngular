@@ -19,6 +19,7 @@ nav {
   user-select: none;
   -webkit-user-select: none;
   color: $dark_text;
+  z-index: 5;
 
   #logo {
     margin-left: 5rem;
