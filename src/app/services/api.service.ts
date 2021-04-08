@@ -123,6 +123,8 @@ export class APIService {
     );
   }
 
+
+
   getCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(baseUrl + `Customers`).pipe(
       //Catch error, if error retry 3 times before error
@@ -146,11 +148,16 @@ export class APIService {
       retry(3),
       catchError(this.handleError)
     )}
+
   postCustomer(body: Customer): Observable<Customer> {
     return this.http
       .post<Customer>(baseUrl + `Customers`, body, httpOptions);
   }
 
+  postMovie(body: Movie): Observable<Movie> {
+    return this.http
+      .post<Movie>(baseUrl + `Movies`, body, httpOptions);
+  }
 
   getScreenings(): Observable<Screening[]> {
     return this.http.get<Screening[]>(baseUrl + `Screenings`).pipe(
@@ -197,7 +204,7 @@ export class APIService {
   getAutoComplete(type: string, search: string): Observable<AutoComplete[]> {
     const typeEncode = encodeURIComponent(`${type}`);
     const searchEncode = encodeURIComponent(`${search}`);
-    
+
     return this.http.get<AutoComplete[]>(baseUrl + `AutoComplete/${typeEncode}/${searchEncode}`)
       .pipe(
         //Catch error, if error retry 3 times before error
