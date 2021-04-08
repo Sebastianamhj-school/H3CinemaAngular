@@ -23,7 +23,7 @@ export class AdminComponent implements OnInit {
     title: [''],
     runtime: [''],
     rating: [''],
-    ageRating: this.fb.array([]),
+    ageRating: [''],
     imgUrl: [''],
     releaseDate: [''],
     genre: this.fb.array([]),
@@ -61,14 +61,6 @@ export class AdminComponent implements OnInit {
 
   onNavigationItemClick(i: number) {
     this.activeNavigation = this.navigationItems[i];
-  }
-
-  addAgeRating() {
-    // if (this.ageRatingItem) {
-    //   this.api.getAgeRating(this.ageRatingItem.id).subscribe(dataAPI => {
-    //     this.ageRatings.push(this.fb.control(dataAPI.name));
-    //   })
-    // }
   }
   addGenre() {
     /* this.genres.push(this.fb.control('')) */
@@ -117,9 +109,6 @@ export class AdminComponent implements OnInit {
     // }
   }
 
-  removeAgeRating(index: number) {
-    this.ageRatings.removeAt(index);
-  }
   removeGenre(index: number) {
     this.genres.removeAt(index);
   }
@@ -139,10 +128,10 @@ export class AdminComponent implements OnInit {
   getValueFromComboBox(val) {
     this.genreItem = val;
   }
-
-  get ageRatings(): FormArray {
-    return this.movieFormGroup.get('ageRating') as FormArray;
+  getAgeRatingValue(val) {
+    this.movieFormGroup.get('ageRating').setValue(val.id);
   }
+
   get genres(): FormArray {
     return this.movieFormGroup.get("genre") as FormArray;
   }
@@ -160,7 +149,7 @@ export class AdminComponent implements OnInit {
   }
 
   movieSubmit() {
-    console.log(this.movieFormGroup.get("genre")["controls"]);
+    
   }
 
 }

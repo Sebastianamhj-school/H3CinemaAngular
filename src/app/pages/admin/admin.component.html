@@ -23,16 +23,8 @@
                             <input type="text" formControlName="runtime" placeholder="runtime">
                             <label>Rating:</label>
                             <input type="text" formControlName="rating" placeholder="rating">
-                            <div>
-                                <h2>Age rating</h2>
-                                <app-combo-box (selectedItem)="getValueFromComboBox($event)" type="Agerating" #ageRatingCombo></app-combo-box>
-                                <button type="button" (click)="addAgeRating()">Add Age rating</button>
-                            </div>
-
-                            <div *ngFor="let ageRating of ageRatings.controls; let i = index">
-                                <p>{{ ageRating.value }}</p>
-                                <button (click)="removeAgeRating(i)" type="button">X</button>
-                            </div>
+                            <label>Age rating</label>
+                            <app-combo-box style="margin-bottom: 1rem;" (selectedItem)="getAgeRatingValue($event)" type="Agerating" #ageRatingCombo></app-combo-box> 
                             <label>Image URL:</label>
                             <input type="text" formControlName="imgUrl" placeholder="Image URL">
                             <label>Release date:</label>
