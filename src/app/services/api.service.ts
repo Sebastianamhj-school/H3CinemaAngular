@@ -186,7 +186,10 @@ export class APIService {
   }
 
   getAutoComplete(type: string, search: string): Observable<AutoComplete[]> {
-    return this.http.get<AutoComplete[]>(baseUrl + `AutoComplete/${type}/${search}`)
+    const typeEncode = encodeURIComponent(`${type}`);
+    const searchEncode = encodeURIComponent(`${search}`);
+    
+    return this.http.get<AutoComplete[]>(baseUrl + `AutoComplete/${typeEncode}/${searchEncode}`)
       .pipe(
         //Catch error, if error retry 3 times before error
         retry(3),
