@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, EventEmitter, ElementRef, Output, ViewChild, OnDestroy } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { Component, Input, OnInit, EventEmitter, ElementRef, Output, ViewChild } from '@angular/core';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
 import { APIService } from 'src/app/services/api.service';
 import { AutoComplete } from 'src/Models/AutoComplete';
 
@@ -24,14 +24,12 @@ export class ComboBoxComponent implements OnInit {
 
   content: AutoComplete[] = [];
 
-  inputValue: string = "";
-
   ngOnInit(): void {
     fromEvent(this.SearchInput.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value;
       }),
-      debounceTime(150),
+      debounceTime(300),
       distinctUntilChanged()
     ).subscribe((text: string) => {
       this.api.getAutoComplete(this.type , text).subscribe(dataAPI => {

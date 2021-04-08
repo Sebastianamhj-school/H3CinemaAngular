@@ -24,7 +24,7 @@
     position: absolute;
     display: block;
     width: 50%;
-    max-height: 0;
+    max-height: 10rem;
     overflow-y: auto;
     background-color: $dark_background_color_dark;
     color: $dark_text;
@@ -43,8 +43,13 @@
     }
   }
 
-  input:focus + .dropdown {
-    max-height: 10rem;
-    transition: 0.5s max-height ease-in-out;
-  }
+  .dropdown:focus,
+    input:focus + .dropdown{
+        opacity: 1;
+    }
+
+    .dropdown:not(:focus),
+    input:not(:focus) + .dropdown{
+        opacity: 0;
+    }
 }
