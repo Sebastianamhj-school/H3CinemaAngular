@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from 'src/app/services/api.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -25,7 +25,8 @@ export class ScreeningComponent implements OnInit {
     private _Activatedroute: ActivatedRoute,
     private apiService: APIService,
     private themeService: ThemeService,
-    private tokenService: TokenStorageService
+    private tokenService: TokenStorageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -74,10 +75,11 @@ export class ScreeningComponent implements OnInit {
         customerId: this.tokenService.getCustomerId()
       } as Booking;
 
-      this.apiService.postBooking(booking).subscribe((dataAPI) => {
-        console.log("Success")
-      }, () => {
-        // ERROR MESSAGE
+      this.apiService.postBooking(booking).toPromise().then(() => {
+        alert("Reservation Successful");
+        this.router.navigate(['front-page']);
+      }, err => {
+        alert(`An Error Occured: ${err}`);
       });
 
     });

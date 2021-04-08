@@ -5,29 +5,48 @@
     <div id="content">
         <form [formGroup]="formUser" *ngIf="!formcheck" (submit)="submitForm()">
             <label>Username</label>
-            <input class="input" type="text" (ngModelChange)="test1($event)" placeholder="Usename" autocomplete="username" formControlName="username" required >
+            <input class="input" type="text" (ngModelChange)="userEvent($event)" placeholder="Usename" autocomplete="username" formControlName="username" required >
+            <div *ngIf="userTaken">Username Already taken</div>
 
             <label>Password</label>
             <input class="input" type="password" placeholder="Password" autocomplete="current-password" formControlName="password" required>
+            <div *ngIf="formUser.get('password').dirty && formUser.get('confirmPassword').dirty && !checkPassword()">Password does not match</div>
+
+
             <label>Confirm password</label>
             <input class="input" type="password" placeholder="Re-enter password" autocomplete="current-password" formControlName="confirmPassword" required>
-            <input class="submit-input" type="submit" value="Next">
+            <div *ngIf="formUser.get('password').dirty && formUser.get('confirmPassword').dirty && !checkPassword()">Password does not match</div>
+
+            <input class="submit-input" type="submit" value="Next" [ngClass]="{'btn-disabled': !formcheckM() }">
         </form>
 
         <form [formGroup]="formCustomer" *ngIf="formcheck" (ngSubmit)="signUp()">
             <label>Firstname</label>
             <input class="input" type="firstname" placeholder="Firstname" autocomplete="firstname" formControlName="firstname" required>
+            <div *ngIf="!firstnameValidation() && this.formCustomer.get('firstname').touched">Firstname must be filled</div>
+
+
             <label>Lastname</label>
             <input class="input" type="lastname" placeholder="Lastname" autocomplete="lastname" formControlName="lastname" required>
+            <div *ngIf="!lastnameValidation() && this.formCustomer.get('lastname').touched">lastname must be filled</div>
+
             <label>Address</label>
             <input class="input" type="address" placeholder="Templane 25" autocomplete="address" formControlName="address" required>
+            <div *ngIf="!addressValidation() && this.formCustomer.get('address').touched">address must be filled</div>
+
             <label>Postcode</label>
             <input class="input" type="postcode" placeholder="Postcode" autocomplete="postcode" formControlName="postcode" required>
+            <div *ngIf="!postcodeValidation() && this.formCustomer.get('postcode').touched">Postcode must be filled and be 4 characters</div>
+
             <label>Phone Number</label>
             <input class="input" type="phoneNumber" placeholder="Phone Number" autocomplete="phoneNumber" formControlName="phoneNumber" required>
+            <div *ngIf="!phoneNumberValidation() && this.formCustomer.get('phoneNumber').touched">Phone number must be filled and be 8 characters</div>
+
             <label>Email</label>
             <input class="input" type="email" placeholder="Email" autocomplete="email" formControlName="email" required pattern="[^ @]*@[^ @]*" required>
-            <input class="submit-input" type="submit" value="Sign Up">
+            <div *ngIf="!emailValidation() && formCustomer.get('email').touched">email must be filled and must be a valid email</div>
+
+            <input class="submit-input" type="submit" value="Sign Up" [ngClass]="{'btn-disabled': !customerValidation()}">
           </form>
 
     </div>
